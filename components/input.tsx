@@ -2,18 +2,22 @@
 
 import { EyeSlashIcon } from "@heroicons/react/24/outline";
 import { EyeIcon } from "@heroicons/react/24/outline";
-import { InputHTMLAttributes, useState } from "react";
+import { InputHTMLAttributes, useEffect, useState } from "react";
 
 interface InputProps {
+  id: string;
   name: string;
   type: string;
+  regex?: RegExp;
   labelText?: string;
   errors?: string[];
 }
 
 export default function FormInput({
+  id,
   name,
   type: originalType,
+  regex,
   labelText,
   errors,
   ...rest
@@ -22,32 +26,31 @@ export default function FormInput({
   const [type, setType] = useState(originalType);
 
   const togglePasswordType = () => {
-    if (type === "password") {
-      setType("text");
-    } else {
-      setType("password");
-    }
+    setType(type === "password" ? "text" : "password");
   };
+
+  useEffect(() => {
+    regex?.test(value);
+  }, [value, regex]);
 
   return (
     <div className="w-full flex flex-col gap-2">
       {labelText && (
-        <label htmlFor={name} className="font-semibold ml-1">
+        <label htmlFor={id} className="font-semibold ml-1">
           {labelText}
         </label>
       )}
       <div className="relative">
         <input
-          name={name}
           className="w-full h-10 bg-transparent rounded-md border-none 
         ring-1 ring-neutral-200 transition-all shadow-md
         focus:outline-none focus:ring-2 focus:ring-blue-500
         placeholder:text-gray-400"
-          id={name}
+          id={id}
           type={type}
-          {...rest}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          {...rest}
         />
         {/* password visible */}
         {originalType === "password" && (
