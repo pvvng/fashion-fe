@@ -8,10 +8,10 @@ export default function FormButton({ text }: { text: string }) {
   return (
     <button
       disabled={pending}
-      className="w-full h-10 mt-3 cursor-pointer bg-blue-600 hover:bg-blue-500 transition-colors 
-    text-white font-semibold rounded-md disabled:bg-neutral-500"
+      className="w-full h-10 mt-3 cursor-pointer bg-neutral-950 hover:bg-neutral-800 text-white transition-colors 
+    font-semibold rounded-lg shadow-md disabled:bg-neutral-500"
     >
-      {!pending ? text : "로딩중.."}
+      {!pending ? text : "로딩 중"}
     </button>
   );
 }
