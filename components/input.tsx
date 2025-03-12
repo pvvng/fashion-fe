@@ -2,7 +2,7 @@
 
 import { EyeSlashIcon } from "@heroicons/react/24/outline";
 import { EyeIcon } from "@heroicons/react/24/outline";
-import { InputHTMLAttributes, useEffect, useState } from "react";
+import { InputHTMLAttributes, useState } from "react";
 
 interface InputProps {
   id: string;
@@ -22,16 +22,11 @@ export default function FormInput({
   errors,
   ...rest
 }: InputProps & InputHTMLAttributes<HTMLInputElement>) {
-  const [value, setValue] = useState("");
   const [type, setType] = useState(originalType);
 
   const togglePasswordType = () => {
     setType(type === "password" ? "text" : "password");
   };
-
-  useEffect(() => {
-    regex?.test(value);
-  }, [value, regex]);
 
   return (
     <div className="w-full flex flex-col gap-2">
@@ -42,14 +37,14 @@ export default function FormInput({
       )}
       <div className="relative">
         <input
+          name={name}
           className="w-full h-10 bg-transparent rounded-md border-none 
-        ring-1 ring-neutral-200 transition-all shadow-md
-        focus:outline-none focus:ring-2 focus:ring-blue-500
-        placeholder:text-gray-400"
+          ring-1 ring-neutral-200 transition-all shadow-md
+          focus:outline-none focus:ring-2 focus:ring-blue-500 
+          placeholder:text-gray-400 aria-[invalid=true]:ring-red-400"
+          aria-invalid={Boolean(errors)}
           id={id}
           type={type}
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
           {...rest}
         />
         {/* password visible */}
@@ -66,14 +61,19 @@ export default function FormInput({
           </span>
         )}
       </div>
-      {/* errors */}
-      <div className="flex flex-col gap-0.5">
-        {errors?.map((error, i) => (
-          <p key={error + i} className="text-red-500 ml-1">
-            {error}
-          </p>
-        ))}
-      </div>
+      {/* error messages */}
+      {errors && (
+        <div
+          className="flex flex-col gap-1
+          border border-neutral-200 rounded-md shadow-md p-2"
+        >
+          {errors.map((error, i) => (
+            <p key={error + i} className="text-red-500 ml-1 break-words">
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

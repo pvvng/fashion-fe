@@ -1,5 +1,7 @@
 import { z } from "zod";
 import {
+  COMMON_ERROR_MESSAGES,
+  EMAIL_ERROR_MESSAGES,
   ID_ERROR_MESSAGES,
   NICKNAME_ERROR_MESSAGES,
   PASSWORD_ERROR_MESSAGES,
@@ -13,6 +15,7 @@ import {
   PASSWORD_MAX_LENGTH,
   PASSWORD_MIN_LENGTH,
 } from "@/constants";
+import validator from "validator";
 
 const checkPasswords = ({
   password,
@@ -26,8 +29,8 @@ export const joinUsSchema = z
   .object({
     nickname: z
       .string({
-        required_error: NICKNAME_ERROR_MESSAGES.REQUIRED_ERROR,
-        invalid_type_error: NICKNAME_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+        required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+        invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
       })
       .trim()
       .toLowerCase()
@@ -42,16 +45,25 @@ export const joinUsSchema = z
       .regex(NICKNAME_REGEX, NICKNAME_ERROR_MESSAGES.REGEX_ERROR),
     id: z
       .string({
-        required_error: ID_ERROR_MESSAGES.REQUIRED_ERROR,
-        invalid_type_error: ID_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+        required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+        invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
       })
       .min(ID_MIN_LENGTH, ID_ERROR_MESSAGES.MIN_LENGTH_ERROR(ID_MIN_LENGTH))
       .max(ID_MAX_LENGTH, ID_ERROR_MESSAGES.MAX_LENGTH_ERROR(ID_MAX_LENGTH))
       .regex(ID_REGEX, ID_ERROR_MESSAGES.REGEX_ERROR),
+    email: z
+      .string({
+        required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+        invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+      })
+      .refine(
+        (email) => validator.isEmail(email),
+        EMAIL_ERROR_MESSAGES.REGEX_ERROR
+      ),
     password: z
       .string({
-        required_error: PASSWORD_ERROR_MESSAGES.REQUIRED_ERROR,
-        invalid_type_error: PASSWORD_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+        required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+        invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
       })
       .min(
         PASSWORD_MIN_LENGTH,
@@ -62,20 +74,10 @@ export const joinUsSchema = z
         PASSWORD_ERROR_MESSAGES.MAX_LENGTH_ERROR(PASSWORD_MAX_LENGTH)
       )
       .regex(PASSWORD_REGEX, PASSWORD_ERROR_MESSAGES.REGEX_ERROR),
-    confirmPassword: z
-      .string({
-        required_error: PASSWORD_ERROR_MESSAGES.REQUIRED_ERROR,
-        invalid_type_error: PASSWORD_ERROR_MESSAGES.INVALID_TYPE_ERROR,
-      })
-      .min(
-        PASSWORD_MIN_LENGTH,
-        PASSWORD_ERROR_MESSAGES.MIN_LENGTH_ERROR(PASSWORD_MIN_LENGTH)
-      )
-      .max(
-        PASSWORD_MAX_LENGTH,
-        PASSWORD_ERROR_MESSAGES.MAX_LENGTH_ERROR(PASSWORD_MAX_LENGTH)
-      )
-      .regex(PASSWORD_REGEX, PASSWORD_ERROR_MESSAGES.REGEX_ERROR),
+    confirmPassword: z.string({
+      required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+      invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+    }),
   })
   .refine(checkPasswords, {
     message: PASSWORD_ERROR_MESSAGES.NOT_CONFIRMED_ERROR,
