@@ -8,14 +8,14 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="relative w-full min-h-screen flex justify-center items-center p-5">
-      <div className="w-2xl p-10 px-14 mx-auto bg-white/80 rounded-2xl">
-        <h1 className="font-extrabold text-2xl uppercase mb-10">
+    <div className="relative w-full min-h-screen flex justify-center items-center sm:p-10 p-5">
+      <div className="sm:p-10 sm:px-14 p-5 w-2xl mx-auto bg-white/80 rounded-2xl">
+        <h1 className="font-extrabold sm:text-2xl text-xl uppercase sm:mb-10 mb-5">
           welcome back
         </h1>
         <LoginForm />
         <p className="mt-5 text-center">
-          <span className="text-neutral-700 mr-2">
+          <span className="text-neutral-700 mr-2 sm:inline hidden">
             회원가입을 하지 않았다면?
           </span>
           <Link

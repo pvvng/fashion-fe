@@ -29,9 +29,9 @@ export default function FormInput({
   };
 
   return (
-    <div className="w-full flex flex-col gap-3">
+    <div className="w-full flex flex-col sm:gap-3 gap-1">
       {labelText && (
-        <label htmlFor={id} className="font-semibold ml-1">
+        <label htmlFor={id} className="font-semibold m-1">
           {labelText}
         </label>
       )}
