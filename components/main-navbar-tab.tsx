@@ -43,9 +43,10 @@ export default function Tab({ tabName, pathname }: TabProps) {
         {linkMap[tabName].map(({ name, link }) => (
           <li
             key={name + link}
-            className={`underline underline-offset-4 font-bold text-sm md:text-base
-            uppercase hover:text-gray-600 transition-all ${
-              link === pathname && "text-blue-500"
+            className={`underline underline-offset-4 font-bold text-sm md:text-base uppercase transition-all ${
+              pathname.includes(link)
+                ? "text-blue-600 hover:text-blue-500"
+                : "hover:text-gray-600"
             }`}
           >
             <Link href={link}>{name}</Link>
