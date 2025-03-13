@@ -53,7 +53,7 @@ export default function MainNavbar() {
         }`}
       >
         <div className="grid grid-rows-4 gap-3 items-center h-full">
-          <Tab tabName="board" pathname={pathame} />
+          <Tab tabName="service" pathname={pathame} />
           <Tab tabName="profile" pathname={pathame} />
           <Tab tabName="about" pathname={pathame} />
           {/* logo */}

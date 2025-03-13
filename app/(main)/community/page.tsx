@@ -11,7 +11,7 @@ const imageMap = [
   "/test-img4.jpg",
 ];
 
-export default function Community() {
+export default async function Community() {
   const initialData: string[] = [];
   [...Array(5)].forEach((_) => initialData.push(...imageMap));
 

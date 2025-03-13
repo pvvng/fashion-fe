@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
-const boardLinks = [
+const serviceLinks = [
   { name: "community", link: "/community" },
   { name: "brands", link: "/brands" },
   { name: "stores", link: "/stores" },
@@ -24,13 +23,13 @@ const aboutUsLinks = [
 ];
 
 interface TabProps {
-  tabName: "board" | "profile" | "about";
+  tabName: "service" | "profile" | "about";
   pathname: string;
 }
 
 export default function Tab({ tabName, pathname }: TabProps) {
   const linkMap = {
-    board: boardLinks,
+    service: serviceLinks,
     profile: profileLinks,
     about: aboutUsLinks,
   };
