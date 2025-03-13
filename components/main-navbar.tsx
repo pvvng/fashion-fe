@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Tab from "./coumminity-navbar-tab";
+import Tab from "./main-navbar-tab";
 import { useEffect, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-export default function CommunityNavbar() {
+export default function MainNavbar() {
   const [isMenuShown, setIsMenuShown] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
 
@@ -29,17 +29,13 @@ export default function CommunityNavbar() {
   return (
     <div className="sticky top-0 left-0 w-full max-h-screen z-50">
       {/* mobile content */}
-      <div className="h-14 lg:hidden block bg-neutral-200/80 p-2 px-4">
+      <div className="lg:hidden block bg-neutral-200/80 p-2 px-4">
         <div className="grid grid-cols-3 items-center">
           <p
-            className="cursor-pointer hover:text-neutral-600 transition-colors"
+            className="cursor-pointer hover:text-neutral-600 transition-colors *:size-7"
             onClick={toggleMenu}
           >
-            {isMenuShown ? (
-              <XMarkIcon className="size-7" />
-            ) : (
-              <Bars3Icon className="size-7" />
-            )}
+            {isMenuShown ? <XMarkIcon /> : <Bars3Icon />}
           </p>
           <Link href="/" className="text-2xl font-extrabold text-center">
             夢遊
