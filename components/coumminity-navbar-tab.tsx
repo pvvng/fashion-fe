@@ -38,7 +38,7 @@ export default function Tab({ tabName }: TabProps) {
         {linkMap[tabName].map(({ name, link }) => (
           <li
             key={name + link}
-            className="underline underline-offset-6 font-bold text-sm sm:text-base
+            className="underline underline-offset-4 font-bold text-sm sm:text-base
             uppercase hover:text-gray-600 transition-all"
           >
             <Link href={link}>{name}</Link>
