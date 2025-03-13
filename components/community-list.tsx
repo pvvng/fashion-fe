@@ -1,0 +1,93 @@
+"use client";
+
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+
+interface ListProps {
+  initialData: string[];
+}
+
+const imageMap = [
+  "/test-img1.jpg",
+  "/test-img2.jpg",
+  "/test-img3.jpg",
+  "/test-img4.jpg",
+];
+
+export default function CoummnityList({ initialData }: ListProps) {
+  const [listData, setListData] = useState(initialData);
+  const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(0);
+  const [isLastPage, setIsLastPage] = useState(false);
+  const trigger = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      async (
+        entries: IntersectionObserverEntry[],
+        observer: IntersectionObserver
+      ) => {
+        const element = entries[0];
+        // trigger 감지
+        if (element.isIntersecting && trigger.current) {
+          // observer 감시 중지
+          observer.unobserve(trigger.current);
+
+          setIsLoading(true);
+          // fetch
+          await new Promise((r) => setTimeout(r, 500));
+          const newData: string[] = [];
+          [...Array(5)].forEach((_) => newData.push(...imageMap));
+
+          if (page <= 5) {
+            setPage((pre) => pre + 1);
+            setListData((pre) => [...pre, ...newData]);
+          } else {
+            setIsLastPage(true);
+          }
+          setIsLoading(false);
+        }
+      },
+      { threshold: 1.0 }
+    );
+    if (trigger.current) {
+      observer.observe(trigger.current);
+    }
+
+    // clean-up
+    return () => {
+      observer.disconnect();
+    };
+    // 나중엔 종속성 변경
+  }, [listData.length]);
+
+  return (
+    <div className="p-3">
+      <div className="grid lg:grid-cols-2 sm:grid-cols-3 gap-3">
+        {listData.map((v, i) => (
+          <Link href="#" key={i}>
+            <div className="relative w-full aspect-square rounded-xl overflow-hidden mx-auto group">
+              <Image
+                src={v}
+                alt="test"
+                sizes="200px"
+                fill
+                className="object-cover rounded-lg group-hover:scale-95 transition-transform duration-300"
+              />
+            </div>
+          </Link>
+        ))}
+      </div>
+      {/* trigger */}
+      {!isLastPage && (
+        <p ref={trigger} className="my-5 text-center">
+          {isLoading ? (
+            <ArrowPathIcon className="size-6 animate-spin mx-auto" />
+          ) : null}
+        </p>
+      )}
+    </div>
+  );
+}

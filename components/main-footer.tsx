@@ -6,9 +6,9 @@ export default function MainFooter() {
       className="w-full flex sm:flex-row flex-col sm:gap-0 gap-3 justify-around items-center p-2 py-3 bg-black text-white
       *:uppercase *:font-bold *:hover:text-gray-400 *:transition-colors"
     >
-      <Link href="/">agreement</Link>
-      <Link href="/">privacy policy</Link>
-      <Link href="/">guide</Link>
+      <Link href="/agreement">agreement</Link>
+      <Link href="/privacy-policy">privacy policy</Link>
+      <Link href="/guide">guide</Link>
     </div>
   );
 }

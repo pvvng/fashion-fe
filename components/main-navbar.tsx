@@ -32,7 +32,7 @@ export default function MainNavbar() {
   return (
     <div className="sticky top-0 left-0 w-full max-h-screen z-50">
       {/* mobile content */}
-      <div className="lg:hidden block bg-neutral-200/80 p-2 px-4">
+      <div className="lg:hidden block bg-neutral-100/80 p-2 px-4">
         <div className="grid grid-cols-3 items-center">
           <p
             className="cursor-pointer hover:text-neutral-600 transition-colors *:size-7"
