@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function CreateAccount() {
   return (
-    <div className="relative w-full min-h-screen flex justify-center items-center sm:p-10 p-5">
+    <div className="relative w-full min-h-screen flex justify-center items-center sm:p-10 p-5 text-black">
       <div className="sm:p-10 sm:px-14 p-5 px-8 w-2xl mx-auto bg-white/90 rounded-2xl">
         <h1 className="font-extrabold sm:text-2xl text-xl sm:mb-10 mb-5 uppercase">
           create account

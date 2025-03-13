@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="relative w-full min-h-screen flex justify-center items-center sm:p-10 p-5">
+    <div className="relative w-full min-h-screen flex justify-center items-center sm:p-10 p-5 text-black">
       <div className="sm:p-10 sm:px-14 p-5 w-2xl mx-auto bg-white/80 rounded-2xl">
         <h1 className="font-extrabold sm:text-2xl text-xl uppercase sm:mb-10 mb-5">
           welcome back

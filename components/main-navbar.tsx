@@ -32,10 +32,10 @@ export default function MainNavbar() {
   return (
     <div className="sticky top-0 left-0 w-full max-h-screen z-50">
       {/* mobile content */}
-      <div className="lg:hidden block bg-neutral-100/80 p-2 px-4">
+      <div className="lg:hidden block bg-neutral-100/80 dark:bg-neutral-800/80 p-2 px-4">
         <div className="grid grid-cols-3 items-center">
           <p
-            className="cursor-pointer hover:text-neutral-600 transition-colors *:size-7"
+            className="cursor-pointer hover:text-neutral-500 transition-colors *:size-7"
             onClick={toggleMenu}
           >
             {isMenuShown ? <XMarkIcon /> : <Bars3Icon />}
@@ -48,9 +48,10 @@ export default function MainNavbar() {
       </div>
       {/* desktop menu content */}
       <div
-        className={`lg:block p-5 w-full h-full lg:min-h-screen bg-white transition-all shadow lg:shadow-none ${
-          isMenuShown ? "" : "hidden"
-        }`}
+        className={`lg:block p-5 w-full h-full lg:min-h-screen bg-white dark:bg-neutral-950 transition-all 
+          dark:shadow-neutral-500 shadow lg:shadow-none ${
+            isMenuShown ? "" : "hidden"
+          }`}
       >
         <div className="grid lg:grid-rows-4 grid-rows-3 gap-3 items-center h-full">
           <Tab tabName="service" pathname={pathame} />
