@@ -65,7 +65,7 @@ export default function CoummnityList({ initialData }: ListProps) {
   }, [listData.length]);
 
   return (
-    <div className="p-5">
+    <div className="py-3">
       <div className="grid sm:grid-cols-2 gap-3">
         {listData.map((v, i) => (
           <Link href="#" key={i}>
