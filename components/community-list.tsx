@@ -64,8 +64,8 @@ export default function CoummnityList({ initialData }: ListProps) {
   }, [listData.length]);
 
   return (
-    <div className="p-3">
-      <div className="grid lg:grid-cols-2 sm:grid-cols-3 gap-3">
+    <div className="p-5">
+      <div className="grid sm:grid-cols-2 gap-3">
         {listData.map((v, i) => (
           <Link href="#" key={i}>
             <div className="relative w-full aspect-square rounded-xl overflow-hidden mx-auto group">
@@ -82,10 +82,8 @@ export default function CoummnityList({ initialData }: ListProps) {
       </div>
       {/* trigger */}
       {!isLastPage && (
-        <p ref={trigger} className="my-5 text-center">
-          {isLoading ? (
-            <ArrowPathIcon className="size-6 animate-spin mx-auto" />
-          ) : null}
+        <p ref={trigger} className="my-3 size-6 mx-auto">
+          {isLoading ? <ArrowPathIcon className="animate-spin mx-auto" /> : ""}
         </p>
       )}
     </div>
