@@ -34,6 +34,7 @@ export default function CreateAccount() {
         alt="slash"
         fill
         className="object-cover -z-10 opacity-95"
+        unoptimized
       />
     </div>
   );

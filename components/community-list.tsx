@@ -42,7 +42,7 @@ export default function CoummnityList({ initialData }: ListProps) {
           [...Array(5)].forEach((_) => newData.push(...imageMap));
 
           // 실제 상황에선 가져온 데이터 개수가 0일때 page 증가 금지
-          if (page <= 5) {
+          if (page <= 3) {
             setPage((pre) => pre + 1);
             setListData((pre) => [...pre, ...newData]);
           } else {
