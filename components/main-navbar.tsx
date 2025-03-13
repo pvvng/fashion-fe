@@ -61,7 +61,7 @@ export default function MainNavbar() {
             href="/"
             className={`${
               isScroll ? "text-7xl" : "text-8xl"
-            } font-extrabold transition-all duration-800`}
+            } font-extrabold transition-all duration-800 mt-auto`}
           >
             夢遊
           </Link>
