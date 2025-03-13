@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Tab from "./coumminity-navbar-tab";
 
 export default function CommunityNavbar() {
   const [isScroll, setIsScroll] = useState(false);
@@ -34,54 +35,6 @@ export default function CommunityNavbar() {
           </p>
         </Link>
       </div>
-    </div>
-  );
-}
-
-const boardLinks = [
-  { name: "coummunity", link: "/" },
-  { name: "brands", link: "/" },
-  { name: "stores", link: "/" },
-  { name: "rental", link: "/" },
-];
-
-const profileLinks = [
-  { name: "login", link: "/login" },
-  { name: "join-us", link: "/create-account" },
-  { name: "my-page", link: "/" },
-];
-
-const aboutUsLinks = [
-  { name: "about-us", link: "/" },
-  { name: "contact", link: "/" },
-  { name: "notice", link: "/" },
-  { name: "q&a", link: "/" },
-];
-
-interface TabProps {
-  tabName: "board" | "profile" | "about";
-}
-
-function Tab({ tabName }: TabProps) {
-  const linkMap = {
-    board: boardLinks,
-    profile: profileLinks,
-    about: aboutUsLinks,
-  };
-
-  return (
-    <div className="w-full">
-      <p className="font-extrabold uppercase mb-5 text-xl">{tabName}</p>
-      <ul
-        className="grid grid-cols-2 gap-3 *:underline *:underline-offset-6 *:font-semibold 
-    *:uppercase *:hover:text-gray-600 *:transition-all"
-      >
-        {linkMap[tabName].map(({ name, link }) => (
-          <li key={name + link}>
-            <Link href={link}>{name}</Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
