@@ -1,19 +1,20 @@
 "use client";
 
+import { CommunityData } from "@/app/(main)/community/page";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 interface ListProps {
-  initialData: string[];
+  initialData: CommunityData;
 }
 
 const imageMap = [
-  "/test-img1.jpg",
-  "/test-img2.jpg",
-  "/test-img3.jpg",
-  "/test-img4.jpg",
+  { id: 1, image: "/test-img1.jpg" },
+  { id: 2, image: "/test-img2.jpg" },
+  { id: 3, image: "/test-img3.jpg" },
+  { id: 4, image: "/test-img4.jpg" },
 ];
 
 export default function CoummnityList({ initialData }: ListProps) {
@@ -38,7 +39,7 @@ export default function CoummnityList({ initialData }: ListProps) {
           setIsLoading(true);
           // fetch
           await new Promise((r) => setTimeout(r, 500));
-          const newData: string[] = [];
+          const newData: CommunityData = [];
           [...Array(5)].forEach((_) => newData.push(...imageMap));
 
           // 실제 상황에선 가져온 데이터 개수가 0일때 page 증가 금지
@@ -68,10 +69,10 @@ export default function CoummnityList({ initialData }: ListProps) {
     <div className="p-5">
       <div className="grid sm:grid-cols-2 gap-5">
         {listData.map((v, i) => (
-          <Link href="#" key={i}>
+          <Link href={`/community/${v.id}`} key={i}>
             <div className="relative w-full aspect-square rounded-xl overflow-hidden mx-auto group">
               <Image
-                src={v}
+                src={v.image}
                 alt="test"
                 sizes="200px"
                 fill

@@ -4,15 +4,20 @@ export const metadata = {
   title: "커뮤니티",
 };
 
+export type CommunityData = {
+  id: number;
+  image: string;
+}[];
+
 const imageMap = [
-  "/test-img1.jpg",
-  "/test-img2.jpg",
-  "/test-img3.jpg",
-  "/test-img4.jpg",
+  { id: 1, image: "/test-img1.jpg" },
+  { id: 2, image: "/test-img2.jpg" },
+  { id: 3, image: "/test-img3.jpg" },
+  { id: 4, image: "/test-img4.jpg" },
 ];
 
 export default async function Community() {
-  const initialData: string[] = [];
+  const initialData: CommunityData = [];
   [...Array(5)].forEach((_) => initialData.push(...imageMap));
 
   return <CoummnityList initialData={initialData} />;
