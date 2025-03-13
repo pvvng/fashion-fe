@@ -7,7 +7,7 @@ export default function CommunityLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="grid grid-cols-2 gap-0">
+    <div className="@container grid lg:grid-cols-2 grid-cols-1 gap-0">
       <CommunityNavbar />
       <div>
         {children}

@@ -34,12 +34,13 @@ export default function Tab({ tabName }: TabProps) {
   return (
     <div className="w-full">
       <p className="font-extrabold uppercase mb-5 text-2xl">{tabName}</p>
-      <ul
-        className="grid grid-cols-2 gap-3 *:underline *:underline-offset-6 *:font-bold 
-        *:uppercase *:hover:text-gray-600 *:transition-all"
-      >
+      <ul className="grid grid-cols-2 gap-3">
         {linkMap[tabName].map(({ name, link }) => (
-          <li key={name + link}>
+          <li
+            key={name + link}
+            className="underline underline-offset-6 font-bold text-sm sm:text-base
+            uppercase hover:text-gray-600 transition-all"
+          >
             <Link href={link}>{name}</Link>
           </li>
         ))}
