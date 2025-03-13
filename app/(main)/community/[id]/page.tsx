@@ -12,7 +12,7 @@ export default async function CommunityDetail({
   params,
 }: CommunityDetailProps) {
   const id = (await params).id;
-  console.log(id);
+
   return (
     <div className="p-5 flex flex-col gap-5">
       <div className="aspect-square overflow-hidden rounded-xl relative">

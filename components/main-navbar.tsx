@@ -52,16 +52,15 @@ export default function MainNavbar() {
           isMenuShown ? "" : "hidden"
         }`}
       >
-        <div className="grid grid-rows-4 gap-3 items-center h-full">
+        <div className="grid lg:grid-rows-4 grid-rows-3 gap-3 items-center h-full">
           <Tab tabName="service" pathname={pathame} />
           <Tab tabName="profile" pathname={pathame} />
           <Tab tabName="about" pathname={pathame} />
-          {/* logo */}
           <Link
             href="/"
             className={`${
               isScroll ? "text-7xl" : "text-8xl"
-            } font-extrabold transition-all duration-800 mt-auto`}
+            } font-extrabold transition-all duration-800 mt-auto hidden lg:block`}
           >
             夢遊
           </Link>
