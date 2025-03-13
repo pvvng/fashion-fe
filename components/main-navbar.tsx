@@ -5,8 +5,11 @@ import Tab from "./main-navbar-tab";
 import { useEffect, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
 
 export default function MainNavbar() {
+  const pathame = usePathname();
+
   const [isMenuShown, setIsMenuShown] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
 
@@ -45,14 +48,14 @@ export default function MainNavbar() {
       </div>
       {/* desktop menu content */}
       <div
-        className={`lg:block p-5 w-full h-full bg-white transition-all shadow lg:shadow-none ${
+        className={`lg:block p-5 w-full h-full lg:min-h-screen bg-white transition-all shadow lg:shadow-none ${
           isMenuShown ? "" : "hidden"
         }`}
       >
         <div className="grid grid-rows-4 gap-3 items-center h-full">
-          <Tab tabName="board" />
-          <Tab tabName="profile" />
-          <Tab tabName="about" />
+          <Tab tabName="board" pathname={pathame} />
+          <Tab tabName="profile" pathname={pathame} />
+          <Tab tabName="about" pathname={pathame} />
           {/* logo */}
           <Link
             href="/"
