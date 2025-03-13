@@ -54,16 +54,14 @@ export default function MainNavbar() {
           <Tab tabName="profile" />
           <Tab tabName="about" />
           {/* logo */}
-          <div className="flex items-end justify-start">
-            <Link
-              href="/"
-              className={`${
-                isScroll ? "text-7xl" : "text-8xl"
-              } font-extrabold transition-all duration-800`}
-            >
-              夢遊
-            </Link>
-          </div>
+          <Link
+            href="/"
+            className={`${
+              isScroll ? "text-7xl" : "text-8xl"
+            } font-extrabold transition-all duration-800`}
+          >
+            夢遊
+          </Link>
         </div>
       </div>
     </div>
