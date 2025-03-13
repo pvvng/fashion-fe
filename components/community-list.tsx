@@ -41,6 +41,7 @@ export default function CoummnityList({ initialData }: ListProps) {
           const newData: string[] = [];
           [...Array(5)].forEach((_) => newData.push(...imageMap));
 
+          // 실제 상황에선 가져온 데이터 개수가 0일때 page 증가 금지
           if (page <= 5) {
             setPage((pre) => pre + 1);
             setListData((pre) => [...pre, ...newData]);
@@ -60,7 +61,7 @@ export default function CoummnityList({ initialData }: ListProps) {
     return () => {
       observer.disconnect();
     };
-    // 나중엔 종속성 변경
+    // 나중엔 종속성 page로 변경
   }, [listData.length]);
 
   return (
