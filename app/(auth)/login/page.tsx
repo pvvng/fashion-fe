@@ -14,17 +14,25 @@ export default function LoginPage() {
           welcome back
         </h1>
         <LoginForm />
-        <p className="mt-5 text-center">
-          <span className="text-neutral-700 mr-2 sm:inline hidden">
-            회원가입을 하지 않았다면?
-          </span>
+        <div className="mt-5 flex flex-col gap-2 text-center">
+          <p>
+            <span className="text-neutral-700 mr-2 sm:inline hidden">
+              회원가입을 하지 않았다면?
+            </span>
+            <Link
+              href="/create-account"
+              className="font-semibold text-blue-600 hover:text-blue-400 transition-colors"
+            >
+              회원가입 페이지로 이동
+            </Link>
+          </p>
           <Link
-            href="/create-account"
-            className="font-semibold text-blue-600 hover:text-blue-400 transition-colors"
+            href="/"
+            className="font-semibold text-center text-blue-600 hover:text-blue-400 transition-colors"
           >
-            회원가입 페이지로 이동
+            메인페이지로 이동
           </Link>
-        </p>
+        </div>
       </div>
       <Image
         src="/slash.gif"
