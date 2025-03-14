@@ -28,6 +28,7 @@ export default async function CommunityDetail({
           fill
           sizes="600px"
           className="object-cover"
+          priority
         />
       </div>
       <h1 className="text-xl font-semibold">커뮤니티 글에 대한 제목</h1>
