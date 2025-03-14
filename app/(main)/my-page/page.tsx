@@ -11,7 +11,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function MyPage() {
-  await new Promise((r) => setTimeout(r, 30000));
   return (
     <div className="@container p-5 flex flex-col gap-5">
       <div className="mx-auto size-52 rounded-full overflow-hidden relative">
