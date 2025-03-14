@@ -8,7 +8,9 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 
 export default function MainNavbar() {
-  const pathame = usePathname();
+  const pathname = usePathname();
+
+  const [pathnameState, setPathnameState] = useState(pathname);
 
   const [isMenuShown, setIsMenuShown] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
@@ -28,6 +30,13 @@ export default function MainNavbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (pathname !== pathnameState && isMenuShown) {
+      setPathnameState(pathname);
+      setIsMenuShown(false);
+    }
+  }, [pathname]);
 
   return (
     <div className="sticky top-0 left-0 w-full max-h-screen z-50">
@@ -54,9 +63,9 @@ export default function MainNavbar() {
           }`}
       >
         <div className="grid lg:grid-rows-4 grid-rows-3 gap-3 items-center h-full">
-          <Tab tabName="service" pathname={pathame} />
-          <Tab tabName="profile" pathname={pathame} />
-          <Tab tabName="about" pathname={pathame} />
+          <Tab tabName="service" pathname={pathname} />
+          <Tab tabName="profile" pathname={pathname} />
+          <Tab tabName="about" pathname={pathname} />
           <Link
             href="/"
             className={`${
