@@ -71,7 +71,7 @@ export default async function CommunityDetail({
           type="text"
           placeholder="게시물에 관한 댓글 작성하기"
         />
-        <FormButton text="작성 완료" />
+        <FormButton text="댓글 등록" />
       </form>
     </div>
   );
