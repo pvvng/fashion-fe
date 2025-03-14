@@ -17,13 +17,13 @@ export default function CreateAccount() {
         <div className="mt-5 flex flex-col gap-2 text-center">
           <Link
             href="/login"
-            className="font-semibold text-blue-600 hover:text-blue-400 transition-colors"
+            className="font-semibold text-blue-500 hover:text-blue-400 transition-colors"
           >
             로그인 페이지로 이동
           </Link>
           <Link
             href="/"
-            className="font-semibold text-center text-blue-600 hover:text-blue-400 transition-colors"
+            className="font-semibold text-center text-blue-500 hover:text-blue-400 transition-colors"
           >
             메인페이지로 이동
           </Link>

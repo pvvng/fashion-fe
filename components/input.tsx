@@ -50,8 +50,8 @@ export default function FormInput({
         {/* password visible */}
         {originalType === "password" && (
           <span
-            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer
-            text-neutral-700 hover:text-neutral-400 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer transition-colors
+            text-neutral-700 hover:text-neutral-400 dark:text-neutral-200 dark:hover:text-neutral-100"
             onClick={togglePasswordType}
           >
             {type === "password" ? (
