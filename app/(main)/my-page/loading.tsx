@@ -4,7 +4,7 @@ export default function Loading() {
       <div className="mx-auto size-52 rounded-full bg-neutral-400" />
       <div className="p-5 rounded-md bg-neutral-400 h-48" />
       <div className="p-5 rounded-md bg-neutral-400 @xs:h-20 h-48" />
-      {[...Array(6)].map((_, i) => (
+      {[...Array(4)].map((_, i) => (
         <div key={i} className="flex justify-between items-center p-3">
           <div className="flex gap-3 items-center">
             <div className="size-5 rounded-full bg-neutral-400" />
