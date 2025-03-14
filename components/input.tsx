@@ -40,7 +40,7 @@ export default function FormInput({
           name={name}
           className="w-full h-10 bg-transparent border-0 border-b-1 border-neutral-400 transition-all px-1
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 focus:px-3 
-          placeholder:text-neutral-800 placeholder:text-sm 
+          placeholder:text-neutral-800 dark:placeholder:text-neutral-400 placeholder:text-sm 
           aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-red-500"
           aria-invalid={Boolean(errors)}
           id={id}
@@ -50,8 +50,8 @@ export default function FormInput({
         {/* password visible */}
         {originalType === "password" && (
           <span
-            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer
-            text-neutral-700 hover:text-neutral-400 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer transition-colors
+            text-neutral-700 hover:text-neutral-400 dark:text-neutral-200 dark:hover:text-neutral-100"
             onClick={togglePasswordType}
           >
             {type === "password" ? (

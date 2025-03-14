@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import Tab from "./coumminity-navbar-tab";
+import Tab from "./main-navbar-tab";
 import { useEffect, useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
 
-export default function CommunityNavbar() {
+export default function MainNavbar() {
+  const pathame = usePathname();
+
   const [isMenuShown, setIsMenuShown] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
 
@@ -29,17 +32,13 @@ export default function CommunityNavbar() {
   return (
     <div className="sticky top-0 left-0 w-full max-h-screen z-50">
       {/* mobile content */}
-      <div className="h-14 lg:hidden block bg-neutral-200/80 p-2 px-4">
+      <div className="lg:hidden block bg-neutral-100/80 dark:bg-neutral-800/80 p-2 px-4">
         <div className="grid grid-cols-3 items-center">
           <p
-            className="cursor-pointer hover:text-neutral-600 transition-colors"
+            className="cursor-pointer hover:text-neutral-500 transition-colors *:size-7"
             onClick={toggleMenu}
           >
-            {isMenuShown ? (
-              <XMarkIcon className="size-7" />
-            ) : (
-              <Bars3Icon className="size-7" />
-            )}
+            {isMenuShown ? <XMarkIcon /> : <Bars3Icon />}
           </p>
           <Link href="/" className="text-2xl font-extrabold text-center">
             夢遊
@@ -49,25 +48,23 @@ export default function CommunityNavbar() {
       </div>
       {/* desktop menu content */}
       <div
-        className={`lg:block p-5 w-full h-full bg-white transition-all shadow lg:shadow-none ${
-          isMenuShown ? "" : "hidden"
-        }`}
+        className={`lg:block p-5 w-full h-full lg:min-h-screen bg-white dark:bg-neutral-950 transition-all 
+          dark:shadow-neutral-500 shadow lg:shadow-none ${
+            isMenuShown ? "" : "hidden"
+          }`}
       >
-        <div className="grid grid-rows-4 gap-3 items-center h-full">
-          <Tab tabName="board" />
-          <Tab tabName="profile" />
-          <Tab tabName="about" />
-          {/* logo */}
-          <div className="flex items-end justify-start">
-            <Link
-              href="/"
-              className={`${
-                isScroll ? "text-7xl" : "text-8xl"
-              } font-extrabold transition-all duration-800`}
-            >
-              夢遊
-            </Link>
-          </div>
+        <div className="grid lg:grid-rows-4 grid-rows-3 gap-3 items-center h-full">
+          <Tab tabName="service" pathname={pathame} />
+          <Tab tabName="profile" pathname={pathame} />
+          <Tab tabName="about" pathname={pathame} />
+          <Link
+            href="/"
+            className={`${
+              isScroll ? "text-7xl" : "text-8xl"
+            } font-extrabold transition-all duration-800 mt-auto hidden lg:block`}
+          >
+            夢遊
+          </Link>
         </div>
       </div>
     </div>

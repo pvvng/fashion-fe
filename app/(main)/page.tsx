@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const metadata = {
+export const metadata = {
   title: "홈",
 };
 
@@ -15,6 +15,7 @@ export default function Home() {
           sizes="600px"
           priority
           className="object-cover"
+          unoptimized
         />
       </div>
       <div className="my-48 *:text-center p-3">
