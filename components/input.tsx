@@ -8,7 +8,6 @@ interface InputProps {
   id: string;
   name: string;
   type: string;
-  regex?: RegExp;
   labelText?: string;
   errors?: string[];
 }
@@ -17,7 +16,6 @@ export default function FormInput({
   id,
   name,
   type: originalType,
-  regex,
   labelText,
   errors,
   ...rest
