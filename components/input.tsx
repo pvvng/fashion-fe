@@ -29,7 +29,7 @@ export default function FormInput({
   return (
     <div className="w-full flex flex-col sm:gap-3 gap-1">
       {labelText && (
-        <label htmlFor={id} className="font-semibold m-1">
+        <label htmlFor={id} className="sm:text-base text-sm font-semibold m-1">
           {labelText}
         </label>
       )}
@@ -53,9 +53,9 @@ export default function FormInput({
             onClick={togglePasswordType}
           >
             {type === "password" ? (
-              <EyeIcon className="size-6" />
+              <EyeIcon className="sm:size-6 size-5" />
             ) : (
-              <EyeSlashIcon className="size-6" />
+              <EyeSlashIcon className="sm:size-6 size-5" />
             )}
           </span>
         )}
