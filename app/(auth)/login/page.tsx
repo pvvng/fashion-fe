@@ -21,14 +21,14 @@ export default function LoginPage() {
             </span>
             <Link
               href="/create-account"
-              className="font-semibold text-blue-500 hover:text-blue-400 transition-colors"
+              className="sm:text-base text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors"
             >
               회원가입 페이지로 이동
             </Link>
           </p>
           <Link
             href="/"
-            className="font-semibold text-center text-blue-500 hover:text-blue-400 transition-colors"
+            className="sm:text-base text-sm font-semibold text-center text-blue-500 hover:text-blue-400 transition-colors"
           >
             메인페이지로 이동
           </Link>

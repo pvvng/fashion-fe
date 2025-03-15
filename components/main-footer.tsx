@@ -14,7 +14,7 @@ export default function MainFooter() {
 
   return (
     <div
-      className="w-full flex sm:flex-row flex-col sm:gap-0 gap-3 justify-around items-center p-2 py-3 
+      className="w-full grid grid-cols-3 text-center sm:gap-0 gap-3 items-center p-2 py-3 text-sm sm:text-base
       bg-black dark:bg-neutral-100 text-white dark:text-black *:uppercase *:font-bold *:transition-colors"
     >
       {links.map(({ name, link }) => (
