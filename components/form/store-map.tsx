@@ -92,10 +92,6 @@ export default function StoreMap() {
     places.keywordSearch(searchKeyword, searchPlacesCB, userLocation);
   }, [map]);
 
-  useEffect(() => {
-    console.log(search);
-  }, [search]);
-
   if (loading || !location.loaded) {
     return (
       <div className="animate-pulse">
