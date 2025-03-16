@@ -1,3 +1,9 @@
+import StoreMap from "@/components/form/store-map";
+
 export default function Stores() {
-  return <div className="h-screen p-5">stores</div>;
+  return (
+    <div className="p-5 min-h-screen">
+      <StoreMap />
+    </div>
+  );
 }
