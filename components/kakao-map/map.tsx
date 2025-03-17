@@ -33,7 +33,7 @@ export default function Map({
         level: level,
       };
 
-      const newMap = new window.kakao.maps.Map(mapRef.current, options);
+      const newMap = new window.kakao.maps.Map(container, options);
 
       if (onCreate) {
         onCreate(newMap);
