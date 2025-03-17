@@ -1,13 +1,13 @@
 "use client";
 
-import MapWrapper from "./map-wrapper";
-import Map from "./map";
-import CustomOverlay from "./custom-overlay";
+import MapWrapper from "./kakao-map/map-wrapper";
+import Map from "./kakao-map/map";
+import CustomOverlay from "./kakao-map/custom-overlay";
+import Marker from "./kakao-map/marker";
 import Link from "next/link";
 import useSearchPlace from "@/util/use-search-place";
 import { BuildingStorefrontIcon } from "@heroicons/react/24/outline";
 import useGeolocation from "@/util/use-geolcation";
-import Marker from "./marker";
 
 export default function StoreMap() {
   const location = useGeolocation();
