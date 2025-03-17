@@ -1,4 +1,4 @@
-import StoreMap from "@/components/form/store-map";
+import StoreMap from "@/components/store-map";
 
 export default function Stores() {
   return (
