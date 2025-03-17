@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-interface locationType {
-  loaded: boolean;
+export interface locationType {
+  loading: boolean;
   coordinates: { lat: number; lng: number };
   error?: { code: number; message: string };
 }
@@ -14,7 +14,7 @@ const SEOUL_CITY_HALL = {
 
 export default function useGeolocation() {
   const [location, setLocation] = useState<locationType>({
-    loaded: false,
+    loading: true,
     coordinates: SEOUL_CITY_HALL,
   });
 
@@ -24,7 +24,7 @@ export default function useGeolocation() {
   }) => {
     console.log("Success to load geolocation.");
     setLocation({
-      loaded: true,
+      loading: false,
       coordinates: {
         lat: location.coords.latitude,
         lng: location.coords.longitude,
@@ -36,7 +36,7 @@ export default function useGeolocation() {
   const onError = (error: { code: number; message: string }) => {
     console.log("Error loading geolocation : ", error.code);
     setLocation({
-      loaded: true,
+      loading: false,
       coordinates: SEOUL_CITY_HALL,
       error,
     });

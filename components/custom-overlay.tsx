@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 
 interface LatLng {
@@ -7,7 +9,7 @@ interface LatLng {
 
 interface CustomOverlayProps {
   position: LatLng;
-  map: kakao.maps.Map;
+  map?: kakao.maps.Map;
   children?: Readonly<React.ReactNode>;
 }
 
@@ -19,6 +21,8 @@ export default function CustomOverlay({
   const overlayRef = useRef<HTMLDivElement>(document.createElement("div"));
 
   useEffect(() => {
+    if (!map) return;
+
     const overlay = new kakao.maps.CustomOverlay({
       position: new kakao.maps.LatLng(position.lat, position.lng),
       content: overlayRef.current,
