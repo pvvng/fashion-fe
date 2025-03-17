@@ -32,7 +32,7 @@ export function useKakaoLoader({
         setError(new Error("Kakao Map SDK 로드 실패"));
         return;
       }
-    }, 10000); // 10초 후에 요청을 중지하도록 설정
+    }, 20000); // 20초 후에 요청을 중지하도록 설정
 
     const loadMapSdk = () => {
       window.kakao.maps.load(() => {
@@ -44,7 +44,8 @@ export function useKakaoLoader({
     const handleError = () => {
       setAttempts((prevAttempts) => prevAttempts + 1);
 
-      if (attempts >= 3) {
+      // 3회 시도
+      if (attempts > 3) {
         clearTimeout(timeoutId); // 에러 발생 후에도 타이머 해제
         setLoading(false);
         setError(new Error("Kakao Map SDK 로드 실패"));
