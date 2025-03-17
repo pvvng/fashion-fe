@@ -1,17 +1,18 @@
-import { useKakaoLoader } from "@/util/use-kakao-loader";
+import { locationType } from "@/util/use-geolcation";
+import { KakaoLoaderResult } from "@/util/use-kakao-loader";
+
+interface MapWrapperProps {
+  location: locationType;
+  kakaoMapResult: KakaoLoaderResult;
+  children: Readonly<React.ReactNode>;
+}
 
 export default function MapWrapper({
+  location,
+  kakaoMapResult,
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  // kakao map sdk 로드
-  const [loading, error] = useKakaoLoader({
-    appkey: process.env.NEXT_PUBLIC_KAKAO_JS_KEY!,
-    libraries: ["services", "clusterer"],
-  });
-
-  if (loading) {
+}: MapWrapperProps) {
+  if (kakaoMapResult.loading || location.loading) {
     return (
       <div className="animate-pulse">
         <div className="aspect-square bg-neutral-400 rounded-2xl" />
@@ -33,7 +34,7 @@ export default function MapWrapper({
     );
   }
 
-  if (error) {
+  if (kakaoMapResult.error || location.error) {
     return (
       <div className="aspect-square flex flex-col justify-center items-center border border-neutral-200 rounded-2xl">
         <p className="text-sm">지도를 불러오는 중 에러가 발생했습니다.</p>

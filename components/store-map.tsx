@@ -8,13 +8,21 @@ import Link from "next/link";
 import useSearchPlace from "@/util/use-search-place";
 import { BuildingStorefrontIcon } from "@heroicons/react/24/outline";
 import useGeolocation from "@/util/use-geolcation";
+import { useKakaoLoader } from "@/util/use-kakao-loader";
 
 export default function StoreMap() {
+  // kakao map sdk 로드
+  const kakaoMapResult = useKakaoLoader({
+    appkey: process.env.NEXT_PUBLIC_KAKAO_JS_KEY!,
+    libraries: ["services", "clusterer"],
+  });
+  // user geolocation 로드
   const location = useGeolocation();
+  // 주변 옷가게 검색해서 지도에 반영하기
   const { map, createMap, search, message } = useSearchPlace(location);
 
   return (
-    <MapWrapper>
+    <MapWrapper location={location} kakaoMapResult={kakaoMapResult}>
       <Map
         center={location.coordinates}
         className="aspect-square rounded-2xl"
