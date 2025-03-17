@@ -27,7 +27,7 @@ export default function StoreMap() {
               <BuildingStorefrontIcon className="size-4" />
               {item.place_name}
             </div>
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-10 border-t-blue-600"></div>
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-10 border-t-blue-600" />
           </CustomOverlay>
         ))}
       </Map>
