@@ -7,6 +7,7 @@ import Link from "next/link";
 import useSearchPlace from "@/util/use-search-place";
 import { BuildingStorefrontIcon } from "@heroicons/react/24/outline";
 import useGeolocation from "@/util/use-geolcation";
+import Marker from "./marker";
 
 export default function StoreMap() {
   const location = useGeolocation();
@@ -19,6 +20,7 @@ export default function StoreMap() {
         className="aspect-square rounded-2xl"
         onCreate={createMap}
       >
+        <Marker position={location.coordinates} map={map} />
         {search.map((item) => (
           <CustomOverlay key={item.id} position={item.position} map={map}>
             <div className="py-1 px-2 text-white rounded-md shadow font-semibold text-sm bg-blue-600 flex gap-1 items-center">
