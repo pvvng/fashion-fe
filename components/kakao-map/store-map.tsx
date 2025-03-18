@@ -1,14 +1,15 @@
 "use client";
 
-import MapWrapper from "./kakao-map/map-wrapper";
-import Map from "./kakao-map/map";
-import CustomOverlay from "./kakao-map/custom-overlay";
-import Marker from "./kakao-map/marker";
+import MapWrapper from "./map-wrapper";
+import Map from "./map";
+import CustomOverlay from "./custom-overlay";
+import Marker from "./marker";
 import Link from "next/link";
 import useSearchPlace from "@/util/use-search-place";
 import { BuildingStorefrontIcon } from "@heroicons/react/24/outline";
 import useGeolocation from "@/util/use-geolcation";
 import { useKakaoLoader } from "@/util/use-kakao-loader";
+import { StoreMapLoading } from "@/app/(main)/stores/loading";
 
 export default function StoreMap() {
   // kakao map sdk 로드
@@ -22,10 +23,14 @@ export default function StoreMap() {
   const { map, createMap, search, message } = useSearchPlace(location);
 
   return (
-    <MapWrapper location={location} kakaoMapResult={kakaoMapResult}>
+    <MapWrapper
+      location={location}
+      kakaoMapResult={kakaoMapResult}
+      fallback={<StoreMapLoading />}
+    >
       <Map
         center={location.coordinates}
-        className="aspect-square rounded-2xl"
+        className="aspect-video rounded-2xl"
         onCreate={createMap}
       >
         <Marker position={location.coordinates} map={map} />
