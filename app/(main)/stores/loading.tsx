@@ -1,5 +1,5 @@
 export default function Loading() {
-  return null;
+  return <div className="min-h-screen" />;
 }
 
 export function StoreMapLoading() {

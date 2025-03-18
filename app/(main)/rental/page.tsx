@@ -16,11 +16,14 @@ export default function Rental() {
 }
 
 async function RetalPosts() {
-  await new Promise((r) => setTimeout(r, 1000));
   return (
     <div className="flex flex-col gap-5 py-5">
       {[...Array(12)].map((_, i) => (
-        <Link key={i} href={`#`} className="flex gap-3 items-center">
+        <Link
+          key={i}
+          href={`/rental/${(i % 4) + 1}`}
+          className="flex gap-3 items-center"
+        >
           <div className="size-28 rounded-xl overflow-hidden relative">
             <Image
               src={`/test-img${(i % 4) + 1}.jpg`}
