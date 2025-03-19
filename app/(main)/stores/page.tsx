@@ -1,4 +1,4 @@
-import StoreMap from "@/components/store-map";
+import StoreMap from "@/components/kakao-map/store-map";
 
 export default function Stores() {
   return (

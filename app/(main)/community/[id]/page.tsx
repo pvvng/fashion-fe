@@ -38,8 +38,6 @@ export default async function CommunityDetail({
         incidunt ipsum qui excepturi perspiciatis, saepe iure cumque? Explicabo
         voluptate atque perspiciatis inventore!
       </p>
-      {/* hr */}
-      {/* <div className="border-b border-neutral-200" /> */}
       {/* heart-comments count */}
       <div className="flex gap-5 justify-end">
         <button className="flex gap-1 items-center">

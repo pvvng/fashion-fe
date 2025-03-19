@@ -5,6 +5,7 @@ import {
   Cog6ToothIcon,
   DocumentIcon,
   GiftTopIcon,
+  ShieldCheckIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -24,11 +25,11 @@ export default async function MyPage() {
         />
       </div>
       <div className="p-5 rounded-xl shadow-md flex flex-col gap-3 dark:border dark:border-neutral-400">
-        <p className="text-2xl font-semibold">username</p>
-        <div>
-          <p className="text-sm">처인구 역북동</p>
-          <p className="text-sm">173cm, 68kg, 260cm</p>
+        <div className="flex gap-1 items-center">
+          <ShieldCheckIcon className="size-5 text-green-500" />
+          <p className="text-xl font-semibold">pvvng</p>
         </div>
+        <p className="text-sm">173cm, 68kg, 260cm</p>
         <p className="text-sm text-neutral-400">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum
           praesentium soluta rem voluptate sunt quis. Eos nesciunt mollitia ex,
@@ -56,8 +57,8 @@ export default async function MyPage() {
       </div>
       <Menu name="Profile" icon="profile" link="#" />
       <Menu name="Posts" icon="post" link="#" />
-      <Menu name="Rental" icon="rental" link="#" />
       <Menu name="Comments" icon="comment" link="#" />
+      <Menu name="Rental" icon="rental" link="#" />
       <Menu name="Chats" icon="chat" link="#" />
       <Menu name="Setting" icon="setting" link="#" />
     </div>

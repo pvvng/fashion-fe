@@ -66,7 +66,15 @@ export default function CoummnityList({ initialData }: ListProps) {
   }, [listData.length]);
 
   return (
-    <div className="p-5">
+    <div className="p-5 relative">
+      <Link
+        href="/community/write"
+        className="sticky top-3 block w-full mb-5 text-center 
+        rounded-xl p-2 font-semibold shadow-md 
+        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
+      >
+        글 작성하기
+      </Link>
       <div className="grid sm:grid-cols-2 gap-5">
         {listData.map((v, i) => (
           <Link href={`/community/${v.id}`} key={i}>
