@@ -11,13 +11,16 @@ export default function Rental() {
       <Suspense fallback={<PostLoading />}>
         <RetalPosts />
       </Suspense>
-      <Link
-        href="/rental/write"
-        className="block sticky bottom-3 w-full text-center bg-black/90 text-white rounded-xl p-2 font-semibold shadow-md 
-        dark:bg-neutral-100 dark:text-black"
-      >
-        글 작성하기
-      </Link>
+      <div className="sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
+        <Link
+          href="/rental/write"
+          className="block w-full mt-5 text-center 
+        rounded-xl p-2 font-semibold shadow-md 
+        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
+        >
+          글 작성하기
+        </Link>
+      </div>
     </div>
   );
 }

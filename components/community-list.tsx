@@ -67,14 +67,6 @@ export default function CoummnityList({ initialData }: ListProps) {
 
   return (
     <div className="p-5 relative">
-      <Link
-        href="/community/write"
-        className="sticky top-3 block w-full mb-5 text-center 
-        rounded-xl p-2 font-semibold shadow-md 
-        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
-      >
-        글 작성하기
-      </Link>
       <div className="grid sm:grid-cols-2 gap-5">
         {listData.map((v, i) => (
           <Link href={`/community/${v.id}`} key={i}>
@@ -96,6 +88,16 @@ export default function CoummnityList({ initialData }: ListProps) {
           {isLoading ? <ArrowPathIcon className="animate-spin mx-auto" /> : ""}
         </p>
       )}
+      <div className="sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
+        <Link
+          href="/community/write"
+          className="block w-full mt-5 text-center 
+        rounded-xl p-2 font-semibold shadow-md 
+        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
+        >
+          글 작성하기
+        </Link>
+      </div>
     </div>
   );
 }

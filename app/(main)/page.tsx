@@ -9,8 +9,8 @@ export default function Home() {
     <div>
       <div className="w-full h-screen relative">
         <Image
-          src="/led.gif"
-          alt="led"
+          src="/oboe.gif"
+          alt="oboe"
           fill
           sizes="600px"
           priority
