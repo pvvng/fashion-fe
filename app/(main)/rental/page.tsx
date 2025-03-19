@@ -6,11 +6,18 @@ import { PostLoading } from "./loading";
 
 export default function Rental() {
   return (
-    <div className="min-h-screen p-5">
+    <div className="min-h-screen p-5 relative">
       <RentalMap />
       <Suspense fallback={<PostLoading />}>
         <RetalPosts />
       </Suspense>
+      <Link
+        href="/rental/write"
+        className="block sticky bottom-3 w-full text-center bg-black/90 text-white rounded-xl p-2 font-semibold shadow-md 
+        dark:bg-neutral-100 dark:text-black"
+      >
+        글 작성하기
+      </Link>
     </div>
   );
 }
