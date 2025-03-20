@@ -3,12 +3,11 @@
 import { createAccountSchema } from "@/lib/zod-schemas";
 
 export async function createAccount(_: any, formData: FormData) {
-  await new Promise((r) => setTimeout(r, 4000));
   const data = {
-    nickname: formData.get("nickname"),
-    id: formData.get("id"),
-    email: formData.get("email"),
-    password: formData.get("password"),
+    memberName: formData.get("memberName"),
+    memberNickName: formData.get("memberNickName"),
+    memberEmail: formData.get("memberEmail"),
+    memberPassword: formData.get("memberPassword"),
     confirmPassword: formData.get("confirmPassword"),
   };
 
@@ -19,4 +18,13 @@ export async function createAccount(_: any, formData: FormData) {
   }
 
   // fetch
+
+  // fetch response
+  // {
+  //   "id": 1,
+  //   "memberName": "yeop",
+  //   "memberEmail": "tmdduqflfl@naver.com",
+  //   "memberPassword": "11112222",
+  //   "memberNickname": "yeop"
+  // }
 }

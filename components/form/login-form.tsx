@@ -17,37 +17,25 @@ export default function LoginForm() {
   return (
     <form action={action} className="flex flex-col gap-5">
       <FormInput
-        id="email"
-        name="email"
+        id="memberEmail"
+        name="memberEmail"
         labelText="이메일"
         placeholder="이메일을 입력하세요."
         required
         type="email"
-        errors={state?.fieldErrors.email}
+        errors={state?.fieldErrors.memberEmail}
       />
       <FormInput
-        id="id"
-        name="id"
-        labelText="아이디"
-        placeholder="아이디를 입력하세요."
-        required
-        type="text"
-        minLength={ID_MIN_LENGTH}
-        maxLength={ID_MAX_LENGTH}
-        errors={state?.fieldErrors.id}
-      />
-      <FormInput
-        id="password"
-        name="password"
+        id="memberPassword"
+        name="memberPassword"
         labelText="비밀번호"
         placeholder="비밀번호를 입력하세요."
         required
         type="password"
         minLength={PASSWORD_MIN_LENGTH}
         maxLength={PASSWORD_MAX_LENGTH}
-        errors={state?.fieldErrors.password}
+        errors={state?.fieldErrors.memberPassword}
       />
-
       <FormButton text="로그인" />
     </form>
   );

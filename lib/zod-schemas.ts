@@ -18,12 +18,12 @@ import {
 import validator from "validator";
 
 const checkPasswords = ({
-  password,
+  memberPassword,
   confirmPassword,
 }: {
-  password: string;
+  memberPassword: string;
   confirmPassword: string;
-}) => password === confirmPassword;
+}) => memberPassword === confirmPassword;
 
 export const nicknameSchmea = z
   .string({
@@ -83,10 +83,10 @@ export const confirmPasswordSchema = z.string({
 
 export const createAccountSchema = z
   .object({
-    nickname: nicknameSchmea,
-    id: idSchema,
-    email: emailSchema,
-    password: passwordSchema,
+    memberName: nicknameSchmea,
+    memberNickName: nicknameSchmea,
+    memberEmail: emailSchema,
+    memberPassword: passwordSchema,
     confirmPassword: confirmPasswordSchema,
   })
   .refine(checkPasswords, {
@@ -95,7 +95,6 @@ export const createAccountSchema = z
   });
 
 export const loginSchmea = z.object({
-  id: idSchema,
-  email: emailSchema,
-  password: passwordSchema,
+  memberEmail: emailSchema,
+  memberPassword: passwordSchema,
 });
