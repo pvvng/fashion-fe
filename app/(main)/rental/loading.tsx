@@ -3,7 +3,9 @@ export default function Loading() {
 }
 
 export function MapLoading() {
-  return <div className="aspect-video bg-neutral-400 rounded-2xl" />;
+  return (
+    <div className="aspect-video bg-neutral-400 rounded-2xl animate-pulse" />
+  );
 }
 
 export function PostLoading() {
