@@ -88,10 +88,10 @@ export default function CoummnityList({ initialData }: ListProps) {
           {isLoading ? <ArrowPathIcon className="animate-spin mx-auto" /> : ""}
         </p>
       )}
-      <div className="sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
+      <div className="mt-5 sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
         <Link
           href="/community/write"
-          className="block w-full mt-5 text-center 
+          className="block w-full my-3 text-center 
         rounded-xl p-2 font-semibold shadow-md 
         bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
         >
