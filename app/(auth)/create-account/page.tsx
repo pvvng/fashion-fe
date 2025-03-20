@@ -15,12 +15,17 @@ export default function CreateAccount() {
         </h1>
         <CreateAccountForm />
         <div className="mt-5 flex flex-col gap-2 text-center">
-          <Link
-            href="/login"
-            className="sm:text-base text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors"
-          >
-            로그인 페이지로 이동
-          </Link>
+          <p>
+            <span className="text-neutral-700 mr-2 sm:inline hidden dark:text-neutral-300">
+              이미 회원가입 했다면?
+            </span>
+            <Link
+              href="/login"
+              className="sm:text-base text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors"
+            >
+              로그인 페이지로 이동
+            </Link>
+          </p>
           <Link
             href="/"
             className="sm:text-base text-sm font-semibold text-center text-blue-500 hover:text-blue-400 transition-colors"

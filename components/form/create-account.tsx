@@ -19,46 +19,46 @@ export default function CreateAccountForm() {
   return (
     <form action={action} className="flex flex-col gap-5">
       <FormInput
-        id="nickname"
-        name="nickname"
+        id="memberName"
+        name="memberName"
         labelText="이름"
-        placeholder="사용할 이름을 입력하세요."
+        placeholder="이름을 입력하세요."
         required
         type="text"
         minLength={NICKNAME_MIN_LENGTH}
         maxLength={NICKNAME_MAX_LENGTH}
-        errors={state?.fieldErrors.nickname}
+        errors={state?.fieldErrors.memberName}
       />
       <FormInput
-        id="email"
-        name="email"
-        labelText="이메일"
-        placeholder="이메일을 입력하세요."
-        required
-        type="email"
-        errors={state?.fieldErrors.email}
-      />
-      <FormInput
-        id="id"
-        name="id"
-        labelText="아이디"
-        placeholder="아이디를 입력하세요."
+        id="memberNickName"
+        name="memberNickName"
+        labelText="별명"
+        placeholder="사용할 별명을 입력하세요."
         required
         type="text"
         minLength={ID_MIN_LENGTH}
         maxLength={ID_MAX_LENGTH}
-        errors={state?.fieldErrors.id}
+        errors={state?.fieldErrors.memberNickName}
       />
       <FormInput
-        id="password"
-        name="password"
+        id="memberEmail"
+        name="memberEmail"
+        labelText="이메일"
+        placeholder="이메일을 입력하세요."
+        required
+        type="email"
+        errors={state?.fieldErrors.memberEmail}
+      />
+      <FormInput
+        id="memberPassword"
+        name="memberPassword"
         labelText="비밀번호"
         placeholder="비밀번호를 입력하세요."
         required
         type="password"
         minLength={PASSWORD_MIN_LENGTH}
         maxLength={PASSWORD_MAX_LENGTH}
-        errors={state?.fieldErrors.password}
+        errors={state?.fieldErrors.memberPassword}
       />
       <FormInput
         id="confirmPassword"
