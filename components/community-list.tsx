@@ -1,7 +1,7 @@
 "use client";
 
 import { CommunityData } from "@/app/(main)/community/page";
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import WriteLinkButton from "./write-link-button";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -22,7 +22,7 @@ export default function CoummnityList({ initialData }: ListProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
-  const trigger = useRef<HTMLParagraphElement>(null);
+  const trigger = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -84,19 +84,16 @@ export default function CoummnityList({ initialData }: ListProps) {
       </div>
       {/* trigger */}
       {!isLastPage && (
-        <p ref={trigger} className="mx-auto my-3 size-6">
-          {isLoading ? <ArrowPathIcon className="mx-auto animate-spin" /> : ""}
-        </p>
-      )}
-      <div className="sticky bottom-0 p-2 mt-5 bg-white/50 dark:bg-black/50 rounded-t-xl">
-        <Link
-          href="/community/write"
-          className="block w-full p-2 my-3 font-semibold text-center text-white shadow-md rounded-xl 
-          bg-black/90 dark:bg-neutral-100 dark:text-black z-100"
+        <div
+          ref={trigger}
+          className="flex flex-row gap-2 justify-center items-center my-3 mt-4"
         >
-          글 작성하기
-        </Link>
-      </div>
+          <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]" />
+          <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]" />
+          <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]" />
+        </div>
+      )}
+      <WriteLinkButton link="/community/write" />
     </div>
   );
 }
