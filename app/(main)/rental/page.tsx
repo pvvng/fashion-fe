@@ -6,16 +6,15 @@ import { PostLoading } from "./loading";
 
 export default function Rental() {
   return (
-    <div className="min-h-screen p-5 relative">
+    <div className="relative min-h-screen p-5">
       <Suspense fallback={<PostLoading />}>
         <RetalPosts />
       </Suspense>
-      <div className="sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
+      <div className="sticky bottom-0 p-2 bg-white/50 dark:bg-black/50 rounded-t-xl">
         <Link
           href="/rental/write"
-          className="block w-full my-3 text-center 
-        rounded-xl p-2 font-semibold shadow-md 
-        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
+          className="block w-full p-2 my-3 font-semibold text-center text-white shadow-md rounded-xl 
+          bg-black/90 dark:bg-neutral-100 dark:text-black z-100"
         >
           글 작성하기
         </Link>
@@ -27,14 +26,14 @@ export default function Rental() {
 
 async function RetalPosts() {
   return (
-    <div className="flex flex-col gap-5 py-5">
+    <div className="flex flex-col gap-5">
       {[...Array(12)].map((_, i) => (
         <Link
           key={i}
           href={`/rental/${(i % 4) + 1}`}
-          className="flex gap-3 items-center"
+          className="flex items-center gap-3"
         >
-          <div className="size-28 rounded-xl overflow-hidden relative">
+          <div className="relative overflow-hidden size-28 rounded-xl">
             <Image
               src={`/test-img${(i % 4) + 1}.jpg`}
               alt="test"

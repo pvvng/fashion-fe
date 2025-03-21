@@ -1,6 +1,6 @@
 "use server";
 
-/** cloudflare에서 1회용 upload url 받는 action */
+/** cloudflare에서 1회용 upload url 받는 함수 */
 export async function getUploadUrl() {
   const response = await fetch(
     `https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/images/v2/direct_upload`,

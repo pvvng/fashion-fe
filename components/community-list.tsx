@@ -66,17 +66,17 @@ export default function CoummnityList({ initialData }: ListProps) {
   }, [listData.length]);
 
   return (
-    <div className="p-5 relative">
-      <div className="grid sm:grid-cols-2 gap-5">
+    <div className="relative p-5">
+      <div className="grid gap-5 sm:grid-cols-2">
         {listData.map((v, i) => (
           <Link href={`/community/${v.id}`} key={i}>
-            <div className="relative w-full aspect-square rounded-xl overflow-hidden mx-auto group">
+            <div className="relative w-full mx-auto overflow-hidden aspect-square rounded-xl group">
               <Image
                 src={v.image}
                 alt="test"
                 sizes="200px"
                 fill
-                className="object-cover rounded-lg group-hover:scale-95 transition-transform duration-300"
+                className="object-cover transition-transform duration-300 rounded-lg group-hover:scale-95"
               />
             </div>
           </Link>
@@ -84,16 +84,15 @@ export default function CoummnityList({ initialData }: ListProps) {
       </div>
       {/* trigger */}
       {!isLastPage && (
-        <p ref={trigger} className="my-3 size-6 mx-auto">
-          {isLoading ? <ArrowPathIcon className="animate-spin mx-auto" /> : ""}
+        <p ref={trigger} className="mx-auto my-3 size-6">
+          {isLoading ? <ArrowPathIcon className="mx-auto animate-spin" /> : ""}
         </p>
       )}
-      <div className="mt-5 sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
+      <div className="sticky bottom-0 p-2 mt-5 bg-white/50 dark:bg-black/50 rounded-t-xl">
         <Link
           href="/community/write"
-          className="block w-full my-3 text-center 
-        rounded-xl p-2 font-semibold shadow-md 
-        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
+          className="block w-full p-2 my-3 font-semibold text-center text-white shadow-md rounded-xl 
+          bg-black/90 dark:bg-neutral-100 dark:text-black z-100"
         >
           글 작성하기
         </Link>

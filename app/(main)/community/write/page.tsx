@@ -3,28 +3,30 @@
 import FormButton from "@/components/button";
 import FormInput from "@/components/input";
 import FormTextArea from "@/components/textarea";
-import { PhotoIcon } from "@heroicons/react/24/outline";
-import { useActionState } from "react";
-import { uploadPost } from "./actions";
+import ImageInput from "@/components/image-input";
 import useImageHandler from "@/util/use-image-handler";
+import { uploadPost } from "./actions";
+import { useActionState } from "react";
+import {
+  POST_CONTENT_MAX_LENGTH,
+  POST_CONTENT_MIN_LENGTH,
+  POST_TITLE_MAX_LENGTH,
+  POST_TITLE_MIN_LENGTH,
+} from "@/constants";
 
 export default function RentalWrite() {
-  const { preview, onImageChange, getCloudFlareImageUrl } = useImageHandler();
+  const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
+    useImageHandler();
 
   const uploadImageAction = async (_: any, formData: FormData) => {
-    const {
-      formData: newFormData,
-      error,
-      message,
-    } = await getCloudFlareImageUrl(formData);
+    const result = await createPhotoUrlForm(formData, uploadUrl, imageId);
 
-    if (!newFormData || error) {
-      alert(message);
+    if (!result.success) {
+      alert(result.error);
       return;
     }
-
     // call uploadPost Action
-    return uploadPost(_, newFormData);
+    return uploadPost(_, result.data);
   };
 
   const [state, action] = useActionState(uploadImageAction, null);
@@ -32,22 +34,7 @@ export default function RentalWrite() {
   return (
     <div className="p-5">
       <form action={action} className="flex flex-col gap-5">
-        <label
-          htmlFor="photo"
-          className="border-2 border-neutral-300 rounded-xl border-dashed aspect-square 
-          flex items-center justify-center text-neutral-300 cursor-pointer bg-center bg-cover"
-          style={{ backgroundImage: `url(${preview})` }}
-        >
-          {preview === "" && <PhotoIcon className="w-20" />}
-        </label>
-        <input
-          type="file"
-          id="photo"
-          name="photo"
-          className="hidden"
-          accept="image/*"
-          onChange={onImageChange}
-        />
+        <ImageInput preview={preview} onImageChange={onImageChange} />
         <FormInput
           id="title"
           name="title"
@@ -55,6 +42,8 @@ export default function RentalWrite() {
           placeholder="제목을 입력하세요"
           labelText="Title"
           required
+          minLength={POST_TITLE_MIN_LENGTH}
+          maxLength={POST_TITLE_MAX_LENGTH}
           errors={state?.fieldErrors.title}
         />
         <FormTextArea
@@ -63,6 +52,8 @@ export default function RentalWrite() {
           placeholder="내용을 입력하세요"
           labelText="Content"
           required
+          minLength={POST_CONTENT_MIN_LENGTH}
+          maxLength={POST_CONTENT_MAX_LENGTH}
           errors={state?.fieldErrors.content}
         />
         <FormButton text="작성 완료" />
