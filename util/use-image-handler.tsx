@@ -52,7 +52,7 @@ export default function useImageHandler() {
     if (!(file && uploadUrl && imageId)) {
       return {
         error: true,
-        message: "이미지를 확인하지 못했습니다.",
+        message: "이미지를 확인하지 못했습니다. 새로고침 후 다시 시도해주세요.",
       };
     }
 
@@ -67,7 +67,7 @@ export default function useImageHandler() {
     if (response.status !== 200) {
       return {
         error: true,
-        message: "이미지 업로드에 실패했습니다.",
+        message: "이미지 업로드에 실패했습니다. 새로고침 후 다시 시도해주세요.",
       };
     }
 

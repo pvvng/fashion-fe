@@ -109,54 +109,67 @@ export const loginSchmea = z.object({
   memberPassword: passwordSchema,
 });
 
-export const uploadRentalSchema = z.object({
-  photo: z
-    .string({
-      required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
-      invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
-    })
-    .refine(
-      (photo) => validator.isURL(photo),
-      IMAGE_URL_ERROR_MESSAGES.REGEX_ERROR
-    )
-    .refine((photo) => false, "error"),
-  title: z
-    .string({
-      required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
-      invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
-    })
-    .min(
-      POST_TITLE_MIN_LENGTH,
-      POST_TITLE_ERROR_MESSAGES.MIN_LENGTH_ERROR(POST_TITLE_MIN_LENGTH)
-    )
-    .max(
-      POST_TITLE_MAX_LENGTH,
-      POST_TITLE_ERROR_MESSAGES.MAX_LENGTH_ERROR(POST_TITLE_MAX_LENGTH)
-    ),
-  price: z.coerce
-    .number({
-      required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
-      invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
-    })
-    .min(
-      RENTAL_MIN_VALUE,
-      RENTAL_PRICE_ERROR_MESSAGES.MIN_PRICE_ERROR(RENTAL_MIN_VALUE)
-    )
-    .max(
-      RENTAL_MAX_VALUE,
-      RENTAL_PRICE_ERROR_MESSAGES.MAX_PRICE_ERROR(RENTAL_MAX_VALUE)
-    ),
-  content: z
-    .string({
-      required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
-      invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
-    })
-    .min(
-      POST_CONTENT_MIN_LENGTH,
-      POST_CONTENT_ERROR_MESSAGES.MIN_LENGTH_ERROR(POST_CONTENT_MIN_LENGTH)
-    )
-    .max(
-      POST_CONTENT_MAX_LENGTH,
-      POST_CONTENT_ERROR_MESSAGES.MAX_LENGTH_ERROR(POST_CONTENT_MAX_LENGTH)
-    ),
+const photoSchema = z
+  .string({
+    required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+    invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+  })
+  .refine(
+    (photo) => validator.isURL(photo),
+    IMAGE_URL_ERROR_MESSAGES.REGEX_ERROR
+  );
+
+const postTitleSchema = z
+  .string({
+    required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+    invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+  })
+  .min(
+    POST_TITLE_MIN_LENGTH,
+    POST_TITLE_ERROR_MESSAGES.MIN_LENGTH_ERROR(POST_TITLE_MIN_LENGTH)
+  )
+  .max(
+    POST_TITLE_MAX_LENGTH,
+    POST_TITLE_ERROR_MESSAGES.MAX_LENGTH_ERROR(POST_TITLE_MAX_LENGTH)
+  );
+
+const rentalPriceSchema = z.coerce
+  .number({
+    required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+    invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+  })
+  .min(
+    RENTAL_MIN_VALUE,
+    RENTAL_PRICE_ERROR_MESSAGES.MIN_PRICE_ERROR(RENTAL_MIN_VALUE)
+  )
+  .max(
+    RENTAL_MAX_VALUE,
+    RENTAL_PRICE_ERROR_MESSAGES.MAX_PRICE_ERROR(RENTAL_MAX_VALUE)
+  );
+
+const contentSchema = z
+  .string({
+    required_error: COMMON_ERROR_MESSAGES.REQUIRED_ERROR,
+    invalid_type_error: COMMON_ERROR_MESSAGES.INVALID_TYPE_ERROR,
+  })
+  .min(
+    POST_CONTENT_MIN_LENGTH,
+    POST_CONTENT_ERROR_MESSAGES.MIN_LENGTH_ERROR(POST_CONTENT_MIN_LENGTH)
+  )
+  .max(
+    POST_CONTENT_MAX_LENGTH,
+    POST_CONTENT_ERROR_MESSAGES.MAX_LENGTH_ERROR(POST_CONTENT_MAX_LENGTH)
+  );
+
+export const rentalSchema = z.object({
+  photo: photoSchema,
+  title: postTitleSchema,
+  price: rentalPriceSchema,
+  content: contentSchema,
+});
+
+export const postSchema = z.object({
+  photo: photoSchema,
+  title: postTitleSchema,
+  content: contentSchema,
 });

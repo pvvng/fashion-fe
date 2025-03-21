@@ -46,16 +46,7 @@ export default function RentalWrite() {
           flex items-center justify-center text-neutral-300 cursor-pointer bg-center bg-cover"
           style={{ backgroundImage: `url(${preview})` }}
         >
-          {preview === "" && (
-            <div>
-              <PhotoIcon className="w-20" />
-              {state?.fieldErrors.photo && (
-                <p className="text-red-400 text-center">
-                  {state?.fieldErrors.photo}
-                </p>
-              )}
-            </div>
-          )}
+          {preview === "" && <PhotoIcon className="w-20" />}
         </label>
         <input
           type="file"
