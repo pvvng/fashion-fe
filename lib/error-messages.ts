@@ -29,3 +29,24 @@ export const NICKNAME_ERROR_MESSAGES = {
 export const EMAIL_ERROR_MESSAGES = {
   REGEX_ERROR: "올바른 이메일 형식이 아닙니다.",
 };
+
+export const IMAGE_URL_ERROR_MESSAGES = {
+  REGEX_ERROR: "올바른 이미지 형식이 아닙니다.",
+};
+
+export const RENTAL_PRICE_ERROR_MESSAGES = {
+  MIN_PRICE_ERROR: (min = 0) =>
+    `렌탈 가격은 최소 ${min.toLocaleString("ko-KR")}원 입니다.`,
+  MAX_PRICE_ERROR: (max = 10000000) =>
+    `렌탈 가격은 최대 ${max.toLocaleString("ko-KR")}원 입니다.`,
+};
+
+export const POST_TITLE_ERROR_MESSAGES = {
+  MIN_LENGTH_ERROR: (min = 4) => `제목은 최소 ${min}자 이상이어야 합니다.`,
+  MAX_LENGTH_ERROR: (max = 20) => `제목은 최대 ${max}자 이하이어야 합니다.`,
+};
+
+export const POST_CONTENT_ERROR_MESSAGES = {
+  MIN_LENGTH_ERROR: (min = 10) => `내용은 최소 ${min}자 이상이어야 합니다.`,
+  MAX_LENGTH_ERROR: (max = 100) => `내용은 최대 ${max}자 이하이어야 합니다.`,
+};

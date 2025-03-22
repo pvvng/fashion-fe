@@ -1,25 +1,17 @@
 import RentalMap from "@/components/kakao-map/rental-map";
+import WriteLinkButton from "@/components/write-link-button";
+import { PostLoading } from "./loading";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { PostLoading } from "./loading";
 
 export default function Rental() {
   return (
-    <div className="min-h-screen p-5 relative">
+    <div className="relative min-h-screen p-5">
       <Suspense fallback={<PostLoading />}>
         <RetalPosts />
       </Suspense>
-      <div className="sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
-        <Link
-          href="/rental/write"
-          className="block w-full my-3 text-center 
-        rounded-xl p-2 font-semibold shadow-md 
-        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
-        >
-          글 작성하기
-        </Link>
-      </div>
+      <WriteLinkButton link="/rental/write" />
       <RentalMap />
     </div>
   );
@@ -27,14 +19,14 @@ export default function Rental() {
 
 async function RetalPosts() {
   return (
-    <div className="flex flex-col gap-5 py-5">
+    <div className="flex flex-col gap-5 mb-5">
       {[...Array(12)].map((_, i) => (
         <Link
           key={i}
           href={`/rental/${(i % 4) + 1}`}
-          className="flex gap-3 items-center"
+          className="flex items-center gap-3"
         >
-          <div className="size-28 rounded-xl overflow-hidden relative">
+          <div className="relative overflow-hidden size-28 rounded-xl">
             <Image
               src={`/test-img${(i % 4) + 1}.jpg`}
               alt="test"

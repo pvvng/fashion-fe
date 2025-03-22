@@ -10,7 +10,7 @@ export function MapLoading() {
 
 export function PostLoading() {
   return (
-    <div className="flex flex-col gap-5 py-5 animate-pulse">
+    <div className="flex flex-col gap-5 mb-5 animate-pulse">
       {[...Array(5)].map((_, i) => (
         <div key={i} className="flex gap-3 items-center">
           <div className="size-28 rounded-xl bg-neutral-400" />

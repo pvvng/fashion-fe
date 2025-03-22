@@ -1,7 +1,7 @@
 "use client";
 
 import { CommunityData } from "@/app/(main)/community/page";
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import WriteLinkButton from "./write-link-button";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -22,7 +22,7 @@ export default function CoummnityList({ initialData }: ListProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
-  const trigger = useRef<HTMLParagraphElement>(null);
+  const trigger = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,17 +66,17 @@ export default function CoummnityList({ initialData }: ListProps) {
   }, [listData.length]);
 
   return (
-    <div className="p-5 relative">
-      <div className="grid sm:grid-cols-2 gap-5">
+    <div className="relative p-5">
+      <div className="grid gap-5 sm:grid-cols-2">
         {listData.map((v, i) => (
           <Link href={`/community/${v.id}`} key={i}>
-            <div className="relative w-full aspect-square rounded-xl overflow-hidden mx-auto group">
+            <div className="relative w-full mx-auto overflow-hidden aspect-square rounded-xl group">
               <Image
                 src={v.image}
                 alt="test"
                 sizes="200px"
                 fill
-                className="object-cover rounded-lg group-hover:scale-95 transition-transform duration-300"
+                className="object-cover transition-transform duration-300 rounded-lg group-hover:scale-95"
               />
             </div>
           </Link>
@@ -84,20 +84,16 @@ export default function CoummnityList({ initialData }: ListProps) {
       </div>
       {/* trigger */}
       {!isLastPage && (
-        <p ref={trigger} className="my-3 size-6 mx-auto">
-          {isLoading ? <ArrowPathIcon className="animate-spin mx-auto" /> : ""}
-        </p>
-      )}
-      <div className="mt-5 sticky bottom-0 p-2 bg-white/40 dark:bg-black/40 rounded-t-xl">
-        <Link
-          href="/community/write"
-          className="block w-full my-3 text-center 
-        rounded-xl p-2 font-semibold shadow-md 
-        bg-black/90 text-white dark:bg-neutral-100 dark:text-black z-100"
+        <div
+          ref={trigger}
+          className="flex flex-row gap-2 justify-center items-center my-3 mt-4"
         >
-          글 작성하기
-        </Link>
-      </div>
+          <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]" />
+          <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]" />
+          <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]" />
+        </div>
+      )}
+      <WriteLinkButton link="/community/write" />
     </div>
   );
 }
