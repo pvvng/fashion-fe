@@ -55,7 +55,7 @@ export default async function MyPage() {
           <p className="text-xs text-neutral-400 font-semibold">scrap</p>
         </Link>
       </div>
-      <Menu name="Profile" icon="profile" link="#" />
+      <Menu name="Profile" icon="profile" link="/my-page/profile" />
       <Menu name="Posts" icon="post" link="#" />
       <Menu name="Comments" icon="comment" link="#" />
       <Menu name="Rental" icon="rental" link="#" />
