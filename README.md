@@ -2,13 +2,15 @@
 
 ## post 데이터의 대략적인 형태
 
+image URL은 CloudFlare 사용. URL 뒤에 /public 붙혀서 이미지 확인 가능
+
 ### 커뮤니티 글 작성
 
 - community/write
 
 ```
 {
-  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/7e84a4b9-1847-4bd0-52a5-2b9614e1e500',
+  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/7e84a4b9-1847-4bd0-52a5-2b9614e1e500',  // CloudFlare Image URL
   title: '옷빌려드림미다',
   price: 9999, // int
   content: '옷빌려드림\r\n연락주셈묘\r\n'
@@ -21,7 +23,7 @@
 
 ```
 {
-  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/7e84a4b9-1847-4bd0-52a5-2b9614e1e500',
+  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/7e84a4b9-1847-4bd0-52a5-2b9614e1e500', // CloudFlare Image URL
   title: '옷빌려드림미다',
   price: 9999, // int
   content: '옷빌려드림\r\n연락주셈묘\r\n'
@@ -30,9 +32,11 @@
 
 ### 마이페이지 프로필 변경 & 위치 인증
 
+- /my-page/profile/edit
+
 ```
 {
-  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/920c4acf-8df3-4262-4c0c-4996e91a6d00',
+  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/920c4acf-8df3-4262-4c0c-4996e91a6d00', // CloudFlare Image URL
   memberNickname: 'pvvng',
   weight: 123, // int
   height: 123, // int
