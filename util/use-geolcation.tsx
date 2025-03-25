@@ -34,6 +34,9 @@ export default function useGeolocation() {
 
   // 에러에 대한 로직
   const onError = (error: { code: number; message: string }) => {
+    alert(
+      "위치를 불러오는 중 에러가 발생했습니다\n새로고침 후 다시 시도해주세요."
+    );
     console.log("Error loading geolocation : ", error.code);
     setLocation({
       loading: false,

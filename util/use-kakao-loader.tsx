@@ -45,6 +45,7 @@ export function useKakaoLoader({
       } else {
         setLoading(false);
         setError(new Error("Kakao Map SDK 로드 실패"));
+        alert("Kakao map 로드에 실패했습니다.\n새로고침 후 다시 시도해주세요.");
         console.log("Error loading Kakao Map SDK");
       }
     }, 20000); // 20초 후에 요청을 중지하도록 설정
@@ -64,6 +65,7 @@ export function useKakaoLoader({
         clearTimeout(timeoutId);
         setLoading(false);
         setError(new Error("Kakao Map SDK 로드 실패"));
+        alert("Kakao map 로드에 실패했습니다.\n새로고침 후 다시 시도해주세요.");
         console.log("Error loading Kakao Map SDK");
       }
     };
