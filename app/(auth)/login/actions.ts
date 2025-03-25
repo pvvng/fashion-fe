@@ -15,7 +15,7 @@ export async function login(_: any, formData: FormData) {
   }
 
   // fetch
-
+  console.log(result.data);
   // fetch response
   // {
   //   "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3NDIzODEyNzQsImlhdCI6MTc0MjM3OTQ3NCwianRpIjoiNzhiYTQwNjUtZWFjYi00ZDhlLWE0YzItNmFhYmNmYTk0NzIyIiwibWVtYmVySWQiOjF9.5hJSXAfKji6aJp89q9K7i_jNl7gVWLDM8VhfywjaPuw",

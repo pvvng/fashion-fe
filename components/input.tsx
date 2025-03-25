@@ -39,7 +39,7 @@ export default function FormInput({
           className="w-full h-10 bg-transparent border-0 border-b-1 border-neutral-400 transition-all px-1
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-0 focus:px-3 
           placeholder:text-neutral-800 dark:placeholder:text-neutral-400 placeholder:text-sm 
-          aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-red-500"
+          aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-red-500 disabled:bg-neutral-100 dark:disabled:bg-neutral-800"
           aria-invalid={Boolean(errors)}
           id={id}
           type={type}

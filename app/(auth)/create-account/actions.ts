@@ -18,7 +18,7 @@ export async function createAccount(_: any, formData: FormData) {
   }
 
   // fetch
-
+  console.log(result.data);
   // fetch response
   // {
   //   "id": 1,

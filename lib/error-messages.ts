@@ -50,3 +50,25 @@ export const POST_CONTENT_ERROR_MESSAGES = {
   MIN_LENGTH_ERROR: (min = 10) => `내용은 최소 ${min}자 이상이어야 합니다.`,
   MAX_LENGTH_ERROR: (max = 100) => `내용은 최대 ${max}자 이하이어야 합니다.`,
 };
+
+export const WEIGHT_ERROR_MESSAGES = {
+  MIN_LENGTH_ERROR: (min = 20) => `몸무게는 최소 ${min}kg 이상이어야 합니다.`,
+  MAX_LENGTH_ERROR: (max = 200) => `몸무게는 최대 ${max}kg 이하이어야 합니다.`,
+} as const;
+
+export const HEIGHT_ERROR_MESSAGES = {
+  MIN_LENGTH_ERROR: (min = 100) => `키는 최소 ${min}cm 이상이어야 합니다.`,
+  MAX_LENGTH_ERROR: (max = 250) => `키는 최대 ${max}cm 이하이어야 합니다.`,
+} as const;
+
+export const SHOES_SIZE_ERROR_MESSAGES = {
+  MIN_LENGTH_ERROR: (min = 100) =>
+    `신발 사이즈는 최소 ${min}cm 이상이어야 합니다.`,
+  MAX_LENGTH_ERROR: (max = 350) =>
+    `신발 사이즈는 최대 ${max}cm 이하이어야 합니다.`,
+} as const;
+
+export const PROFILE_DESCRIPTION_ERROR_MESSAGES = {
+  MIN_LENGTH_ERROR: (min = 1) => `설명은 최소 ${min}자 이상이어야 합니다.`,
+  MAX_LENGTH_ERROR: (max = 30) => `설명은 최대 ${max}자 이하이어야 합니다.`,
+};
