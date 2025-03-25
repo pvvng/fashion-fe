@@ -4,7 +4,6 @@ import FormButton from "@/components/button";
 import FormInput from "@/components/input";
 import FormTextArea from "@/components/textarea";
 import ImageInput from "@/components/image-input";
-import { uploadRental } from "./actions";
 import { useActionState } from "react";
 import useImageHandler from "@/util/use-image-handler";
 import {
@@ -15,28 +14,45 @@ import {
   RENTAL_MAX_VALUE,
   RENTAL_MIN_VALUE,
 } from "@/constants";
+import { rentalSchema } from "@/lib/zod-schemas";
+import useFormSubmitHandler from "@/util/use-form-submit-handler";
 
 export default function RentalWrite() {
   const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
     useImageHandler();
 
-  const uploadImageAction = async (_: any, formData: FormData) => {
-    const result = await createPhotoUrlForm(formData, uploadUrl, imageId);
+  const uploadAction = async (_: any, formData: FormData) => {
+    const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
 
-    if (!result.success) {
-      alert(result.error);
+    if (!formResult.success) {
+      alert(formResult.error);
       return;
     }
 
-    // call origin action
-    return uploadRental(_, result.data);
+    // zod parse
+    const data = {
+      photo: formData.get("photo"),
+      title: formData.get("title"),
+      price: formData.get("price"),
+      content: formData.get("content"),
+    };
+
+    const parseResult = rentalSchema.safeParse(data);
+
+    if (!parseResult.success) {
+      return parseResult.error.flatten();
+    }
+
+    // fetch to BE
+    console.log(parseResult.data);
   };
 
-  const [state, action] = useActionState(uploadImageAction, null);
+  const [state, action] = useActionState(uploadAction, null);
+  const handleSubmit = useFormSubmitHandler({ action });
 
   return (
     <div className="p-5">
-      <form action={action} className="flex flex-col gap-5">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <ImageInput preview={preview} onImageChange={onImageChange} />
         <FormInput
           id="title"
