@@ -18,18 +18,29 @@ import {
 import { useActionState } from "react";
 
 export default function RentalWrite() {
-  const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
-    useImageHandler();
+  const {
+    preview,
+    uploadUrl,
+    imageId,
+    prevPhotoUrl,
+    onImageChange,
+    createPhotoUrlForm,
+  } = useImageHandler();
 
   const uploadAction = async (_: any, formData: FormData) => {
-    const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
+    let photoUrl = prevPhotoUrl;
 
-    if (!formResult.success) {
-      alert(formResult.error);
-      return;
+    if (!photoUrl) {
+      const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
+      if (!formResult.success) {
+        return alert(formResult.error);
+      }
+      photoUrl = formResult.data;
     }
 
-    return uploadRental(_, formResult.data);
+    formData.set("photo", photoUrl);
+
+    return uploadRental(_, formData);
   };
 
   const [state, action] = useActionState(uploadAction, null);
@@ -46,7 +57,7 @@ export default function RentalWrite() {
           placeholder="제목을 입력하세요"
           labelText="Title"
           required
-          minLength={POST_TITLE_MIN_LENGTH}
+          // minLength={POST_TITLE_MIN_LENGTH}
           maxLength={POST_TITLE_MAX_LENGTH}
           errors={state?.fieldErrors.title}
         />

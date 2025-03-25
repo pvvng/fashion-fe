@@ -35,29 +35,40 @@ export default function Profile() {
   // 반환된 실제 주소
   const address = useGetAddress(kakaoMapResult, location);
   // CF Image handler hook
-  const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
-    useImageHandler();
+  const {
+    preview,
+    uploadUrl,
+    imageId,
+    prevPhotoUrl,
+    onImageChange,
+    createPhotoUrlForm,
+  } = useImageHandler();
 
   // action
   const uploadAction = async (_: any, formData: FormData) => {
-    const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
+    let photoUrl = prevPhotoUrl;
 
-    if (!formResult.success) {
-      alert(formResult.error);
-      return;
+    if (!photoUrl) {
+      const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
+      if (!formResult.success) {
+        return alert(formResult.error);
+      }
+      photoUrl = formResult.data;
     }
+
+    formData.set("photo", photoUrl);
 
     if (location.loading || location.error) {
-      alert("위치 인증이 완료되지 않았습니다.\n새로고침 후 다시 시도해주세요.");
-      return;
+      return alert(
+        "위치 인증이 완료되지 않았습니다.\n새로고침 후 다시 시도해주세요."
+      );
     }
-
     const { lat, lng } = location.coordinates;
 
-    formResult.data.set("lat", lat.toString());
-    formResult.data.set("lng", lng.toString());
+    formData.set("lat", lat.toString());
+    formData.set("lng", lng.toString());
 
-    return editProfile(_, formResult.data);
+    return editProfile(_, formData);
   };
 
   const [state, action] = useActionState(uploadAction, null);

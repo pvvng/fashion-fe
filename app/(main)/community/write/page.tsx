@@ -15,19 +15,30 @@ import {
 } from "@/constants";
 import { useActionState } from "react";
 
-export default function RentalWrite() {
-  const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
-    useImageHandler();
+export default function CommunityPostWrite() {
+  const {
+    preview,
+    uploadUrl,
+    imageId,
+    prevPhotoUrl,
+    onImageChange,
+    createPhotoUrlForm,
+  } = useImageHandler();
 
   const uploadAction = async (_: any, formData: FormData) => {
-    const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
+    let photoUrl = prevPhotoUrl;
 
-    if (!formResult.success) {
-      alert(formResult.error);
-      return;
+    if (!photoUrl) {
+      const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
+      if (!formResult.success) {
+        return alert(formResult.error);
+      }
+      photoUrl = formResult.data;
     }
 
-    return uploadPost(_, formResult.data);
+    formData.set("photo", photoUrl);
+
+    return uploadPost(_, formData);
   };
 
   const [state, action] = useActionState(uploadAction, null);

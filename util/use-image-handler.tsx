@@ -3,7 +3,7 @@ import { useState } from "react";
 
 type PhotoUrlFnReturnType =
   | { success: false; error: string }
-  | { success: true; data: FormData };
+  | { success: true; data: string };
 
 const MAX_FILE_SIZE_MB = 3;
 
@@ -12,16 +12,21 @@ export default function useImageHandler() {
   const [uploadUrl, setUploadUrl] = useState<string | undefined>(undefined);
   const [preview, setPreview] = useState<string | undefined>(undefined);
   const [imageId, setImageId] = useState<string | undefined>(undefined);
+  const [prevPhotoUrl, setprevPhotoUrl] = useState<string | undefined>(
+    undefined
+  );
   const [isUploading, setIsUploading] = useState(false);
 
   /** 이미지 변경 핸들러 함수 */
   const onImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     // 중복 요청 방지
     if (isUploading) {
-      alert("이미지 업로드 중 입니다.");
-      return;
+      return alert("이미지 업로드 중 입니다.");
     }
 
+    // 이전에 정의된 photoURL 초기화
+    setprevPhotoUrl(undefined);
+    // 로딩 플래그 true
     setIsUploading(true);
 
     try {
@@ -36,28 +41,28 @@ export default function useImageHandler() {
       const file = files[0];
 
       if (!file.type.startsWith("image")) {
-        alert("이미지 파일만 업로드 할 수 있습니다.");
-        return;
+        return alert("이미지 파일만 업로드 할 수 있습니다.");
       }
 
       if (MAX_FILE_SIZE_MB < file.size / (1024 * 1024)) {
-        alert(`최대 ${MAX_FILE_SIZE_MB}MB의 이미지만 업로드 할 수 있습니다.`);
-        return;
+        return alert(
+          `최대 ${MAX_FILE_SIZE_MB}MB의 이미지만 업로드 할 수 있습니다.`
+        );
       }
 
       // 내 브라우저에서만 사용가능한 url 생성하기
-      // 브라우저 메모리에 파일 임시저장되는거 사용하는거임
+      // 브라우저 메모리에 파일 임시저장되는거 사용하는 것
       const url = URL.createObjectURL(file);
+      // preview Url blob link
       setPreview(url);
 
       // cf upload url
       const { success, result } = await getUploadUrl();
 
       if (!success) {
-        alert(
+        return alert(
           "이미지 확인에 실패했습니다.\n문제가 지속될 경우 다른 네트워크 환경에서 시도해주세요."
         );
-        return;
       }
 
       const { id, uploadURL } = result;
@@ -87,6 +92,7 @@ export default function useImageHandler() {
     const cloudflareForm = new FormData();
     cloudflareForm.append("file", imageFile);
 
+    // 이미 사용된 uploadurl 사용시 중첩 에러(309)가 발생하는듯
     const response = await fetch(uploadUrl, {
       method: "post",
       body: cloudflareForm,
@@ -101,14 +107,12 @@ export default function useImageHandler() {
 
     // replace photo in formdata
     const photoUrl = `https://imagedelivery.net/${process.env.NEXT_PUBLIC_CLOUDFLARE_ACCOUNT_HASH}/${imageId}`;
-
-    formData.set("photo", photoUrl!);
-    // preview 클리어
-    setPreview("");
+    // photoUrl 저장
+    setprevPhotoUrl(photoUrl);
 
     return {
       success: true,
-      data: formData,
+      data: photoUrl,
     };
   };
 
@@ -116,6 +120,7 @@ export default function useImageHandler() {
     preview,
     uploadUrl,
     imageId,
+    prevPhotoUrl,
     isUploading,
     onImageChange,
     createPhotoUrlForm,
