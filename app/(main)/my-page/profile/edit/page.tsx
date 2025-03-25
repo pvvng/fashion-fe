@@ -6,10 +6,9 @@ import FormButton from "@/components/button";
 import useGeolocation from "@/util/use-geolcation";
 import { useKakaoLoader } from "@/util/use-kakao-loader";
 import useImageHandler from "@/util/use-image-handler";
-import { useActionState, useEffect, useState } from "react";
-import { PhotoIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
-import { editProfile } from "./actions";
 import useGetAddress from "@/util/use-get-address";
+import useFormSubmitHandler from "@/util/use-form-submit-handler";
+import { editProfile } from "./actions";
 import {
   HEIGHT_MAX_VALUE,
   HEIGHT_MIN_VALUE,
@@ -22,6 +21,8 @@ import {
   WEIGHT_MAX_VALUE,
   WEIGHT_MIN_VALUE,
 } from "@/constants";
+import { useActionState } from "react";
+import { PhotoIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 
 export default function Profile() {
   // 카카오맵 api 로더
@@ -36,12 +37,13 @@ export default function Profile() {
   // CF Image handler hook
   const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
     useImageHandler();
-  // interceptAction
-  const uploadImageAction = async (_: any, formData: FormData) => {
-    const result = await createPhotoUrlForm(formData, uploadUrl, imageId);
 
-    if (!result.success) {
-      alert(result.error);
+  // action
+  const uploadAction = async (_: any, formData: FormData) => {
+    const formResult = await createPhotoUrlForm(formData, uploadUrl, imageId);
+
+    if (!formResult.success) {
+      alert(formResult.error);
       return;
     }
 
@@ -52,17 +54,20 @@ export default function Profile() {
 
     const { lat, lng } = location.coordinates;
 
-    result.data.set("lat", lat.toString());
-    result.data.set("lng", lng.toString());
+    formResult.data.set("lat", lat.toString());
+    formResult.data.set("lng", lng.toString());
 
-    // call form Action
-    return editProfile(_, result.data);
+    return editProfile(_, formResult.data);
   };
 
-  const [state, action] = useActionState(uploadImageAction, null);
+  const [state, action] = useActionState(uploadAction, null);
+  const handleSubmit = useFormSubmitHandler({ action });
 
   return (
-    <form action={action} className="min-h-screen p-5 flex flex-col gap-5">
+    <form
+      onSubmit={handleSubmit}
+      className="min-h-screen p-5 flex flex-col gap-5"
+    >
       <label
         htmlFor="photo"
         className="border-3 border-dashed border-neutral-300 rounded-full size-52 mx-auto

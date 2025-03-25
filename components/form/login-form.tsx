@@ -4,18 +4,15 @@ import { login } from "@/app/(auth)/login/actions";
 import { useActionState } from "react";
 import FormInput from "../input";
 import FormButton from "../button";
-import {
-  ID_MAX_LENGTH,
-  ID_MIN_LENGTH,
-  PASSWORD_MAX_LENGTH,
-  PASSWORD_MIN_LENGTH,
-} from "@/constants";
+import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH } from "@/constants";
+import useFormSubmitHandler from "@/util/use-form-submit-handler";
 
 export default function LoginForm() {
   const [state, action] = useActionState(login, null);
+  const handleSubmit = useFormSubmitHandler({ action });
 
   return (
-    <form action={action} className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <FormInput
         id="memberEmail"
         name="memberEmail"
