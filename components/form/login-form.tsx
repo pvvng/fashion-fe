@@ -19,7 +19,7 @@ export default function LoginForm() {
         labelText="이메일"
         placeholder="이메일을 입력하세요."
         required
-        type="text"
+        type="email"
         errors={state?.fieldErrors.memberEmail}
       />
       <FormInput
