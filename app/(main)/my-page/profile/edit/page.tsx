@@ -6,9 +6,9 @@ import FormButton from "@/components/button";
 import useGeolocation from "@/util/use-geolcation";
 import { useKakaoLoader } from "@/util/use-kakao-loader";
 import useImageHandler from "@/util/use-image-handler";
-import { useActionState } from "react";
-import { PhotoIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import useGetAddress from "@/util/use-get-address";
+import useFormSubmitHandler from "@/util/use-form-submit-handler";
+import { editProfile } from "./actions";
 import {
   HEIGHT_MAX_VALUE,
   HEIGHT_MIN_VALUE,
@@ -21,8 +21,8 @@ import {
   WEIGHT_MAX_VALUE,
   WEIGHT_MIN_VALUE,
 } from "@/constants";
-import { profileSchema } from "@/lib/zod-schemas";
-import useFormSubmitHandler from "@/util/use-form-submit-handler";
+import { useActionState } from "react";
+import { PhotoIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 
 export default function Profile() {
   // 카카오맵 api 로더
@@ -57,25 +57,7 @@ export default function Profile() {
     formResult.data.set("lat", lat.toString());
     formResult.data.set("lng", lng.toString());
 
-    // zod parse
-    const data = {
-      photo: formData.get("photo"),
-      memberNickname: formData.get("memberNickname"),
-      weight: formData.get("weight"),
-      height: formData.get("height"),
-      shoesSize: formData.get("shoesSize"),
-      description: formData.get("description"),
-      lat: formData.get("lat"),
-      lng: formData.get("lng"),
-    };
-
-    const parseResult = profileSchema.safeParse(data);
-    if (!parseResult.success) {
-      return parseResult.error.flatten();
-    }
-
-    // fetch to BE
-    console.log(parseResult.data);
+    return editProfile(_, formResult.data);
   };
 
   const [state, action] = useActionState(uploadAction, null);

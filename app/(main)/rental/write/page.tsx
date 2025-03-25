@@ -4,8 +4,9 @@ import FormButton from "@/components/button";
 import FormInput from "@/components/input";
 import FormTextArea from "@/components/textarea";
 import ImageInput from "@/components/image-input";
-import { useActionState } from "react";
 import useImageHandler from "@/util/use-image-handler";
+import useFormSubmitHandler from "@/util/use-form-submit-handler";
+import { uploadRental } from "./actions";
 import {
   POST_CONTENT_MAX_LENGTH,
   POST_CONTENT_MIN_LENGTH,
@@ -14,8 +15,7 @@ import {
   RENTAL_MAX_VALUE,
   RENTAL_MIN_VALUE,
 } from "@/constants";
-import { rentalSchema } from "@/lib/zod-schemas";
-import useFormSubmitHandler from "@/util/use-form-submit-handler";
+import { useActionState } from "react";
 
 export default function RentalWrite() {
   const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
@@ -29,22 +29,7 @@ export default function RentalWrite() {
       return;
     }
 
-    // zod parse
-    const data = {
-      photo: formData.get("photo"),
-      title: formData.get("title"),
-      price: formData.get("price"),
-      content: formData.get("content"),
-    };
-
-    const parseResult = rentalSchema.safeParse(data);
-
-    if (!parseResult.success) {
-      return parseResult.error.flatten();
-    }
-
-    // fetch to BE
-    console.log(parseResult.data);
+    return uploadRental(_, formResult.data);
   };
 
   const [state, action] = useActionState(uploadAction, null);

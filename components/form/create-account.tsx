@@ -4,8 +4,6 @@ import { useActionState } from "react";
 import FormButton from "../button";
 import FormInput from "../input";
 import {
-  ID_MAX_LENGTH,
-  ID_MIN_LENGTH,
   NICKNAME_MAX_LENGTH,
   NICKNAME_MIN_LENGTH,
   PASSWORD_MAX_LENGTH,
@@ -28,7 +26,7 @@ export default function CreateAccountForm() {
         required
         type="text"
         minLength={NICKNAME_MIN_LENGTH}
-        // maxLength={NICKNAME_MAX_LENGTH}
+        maxLength={NICKNAME_MAX_LENGTH}
         errors={state?.fieldErrors.memberName}
       />
       <FormInput
@@ -38,8 +36,8 @@ export default function CreateAccountForm() {
         placeholder="사용할 별명을 입력하세요."
         required
         type="text"
-        minLength={ID_MIN_LENGTH}
-        maxLength={ID_MAX_LENGTH}
+        minLength={NICKNAME_MIN_LENGTH}
+        maxLength={NICKNAME_MAX_LENGTH}
         errors={state?.fieldErrors.memberNickName}
       />
       <FormInput

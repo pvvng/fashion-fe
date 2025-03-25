@@ -5,15 +5,15 @@ import FormInput from "@/components/input";
 import FormTextArea from "@/components/textarea";
 import ImageInput from "@/components/image-input";
 import useImageHandler from "@/util/use-image-handler";
-import { useActionState } from "react";
+import useFormSubmitHandler from "@/util/use-form-submit-handler";
+import { uploadPost } from "./actions";
 import {
   POST_CONTENT_MAX_LENGTH,
   POST_CONTENT_MIN_LENGTH,
   POST_TITLE_MAX_LENGTH,
   POST_TITLE_MIN_LENGTH,
 } from "@/constants";
-import { postSchema } from "@/lib/zod-schemas";
-import useFormSubmitHandler from "@/util/use-form-submit-handler";
+import { useActionState } from "react";
 
 export default function RentalWrite() {
   const { preview, uploadUrl, imageId, onImageChange, createPhotoUrlForm } =
@@ -27,23 +27,7 @@ export default function RentalWrite() {
       return;
     }
 
-    const data = {
-      photo: formResult.data.get("photo"),
-      title: formResult.data.get("title"),
-      content: formResult.data.get("content"),
-    };
-
-    // zod parse
-    const parseResult = postSchema.safeParse(data);
-
-    if (!parseResult.success) {
-      return parseResult.error.flatten();
-    }
-
-    // fetch to BE
-    console.log(parseResult.data);
-    // BE에서 검증하지 않는다면 서버에서 검증 후 BE로 전송
-    // return uploadPost(_, formResult.data);
+    return uploadPost(_, formResult.data);
   };
 
   const [state, action] = useActionState(uploadAction, null);
