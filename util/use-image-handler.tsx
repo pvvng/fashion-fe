@@ -53,11 +53,16 @@ export default function useImageHandler() {
       // cf upload url
       const { success, result } = await getUploadUrl();
 
-      if (success) {
-        const { id, uploadURL } = result;
-        setUploadUrl(uploadURL);
-        setImageId(id);
+      if (!success) {
+        alert(
+          "이미지 확인에 실패했습니다.\n문제가 지속될 경우 다른 네트워크 환경에서 시도해주세요."
+        );
+        return;
       }
+
+      const { id, uploadURL } = result;
+      setUploadUrl(uploadURL);
+      setImageId(id);
     } finally {
       setIsUploading(false);
     }
