@@ -12,12 +12,14 @@ import {
   PASSWORD_MIN_LENGTH,
 } from "@/constants";
 import { createAccount } from "@/app/(auth)/create-account/actions";
+import useFormSubmitHandler from "@/util/use-form-submit-handler";
 
 export default function CreateAccountForm() {
   const [state, action] = useActionState(createAccount, null);
+  const handleSubmit = useFormSubmitHandler({ action });
 
   return (
-    <form action={action} className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <FormInput
         id="memberName"
         name="memberName"
@@ -26,7 +28,7 @@ export default function CreateAccountForm() {
         required
         type="text"
         minLength={NICKNAME_MIN_LENGTH}
-        maxLength={NICKNAME_MAX_LENGTH}
+        // maxLength={NICKNAME_MAX_LENGTH}
         errors={state?.fieldErrors.memberName}
       />
       <FormInput
