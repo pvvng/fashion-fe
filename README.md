@@ -6,7 +6,7 @@ image URL은 CloudFlare 사용. URL 뒤에 /public 붙혀서 이미지 확인 �
 
 ### 커뮤니티 글 작성
 
-- community/write
+- /community/write
 
 ```
 {
@@ -19,7 +19,7 @@ image URL은 CloudFlare 사용. URL 뒤에 /public 붙혀서 이미지 확인 �
 
 ### 렌탈 글 작성
 
-- rental/write
+- /rental/write
 
 ```
 {
@@ -36,7 +36,7 @@ image URL은 CloudFlare 사용. URL 뒤에 /public 붙혀서 이미지 확인 �
 
 ```
 {
-  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/920c4acf-8df3-4262-4c0c-4996e91a6d00', // CloudFlare Image URL
+  photo: 'https://imagedelivery.net/MR01-6_39Z4fkK0Q1BsXww/7e84a4b9-1847-4bd0-52a5-2b9614e1e500', // CloudFlare Image URL
   memberNickname: 'pvvng',
   weight: 123, // int
   height: 123, // int
