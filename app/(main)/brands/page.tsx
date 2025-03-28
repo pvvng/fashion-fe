@@ -1,3 +1,9 @@
+import StoreMap from "@/components/kakao-map/store-map";
+
 export default function Brands() {
-  return <div className="h-screen p-5">brands</div>;
+  return (
+    <div className="p-5 min-h-screen">
+      <StoreMap />
+    </div>
+  );
 }

@@ -9,7 +9,7 @@ import useSearchPlace from "@/util/use-search-place";
 import { BuildingStorefrontIcon } from "@heroicons/react/24/outline";
 import useGeolocation from "@/util/use-geolcation";
 import { useKakaoLoader } from "@/util/use-kakao-loader";
-import { StoreMapLoading } from "@/app/(main)/stores/loading";
+import { StoreMapLoading } from "@/app/(main)/brands/loading";
 
 export default function StoreMap() {
   // kakao map sdk 로드
