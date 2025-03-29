@@ -1,3 +1,5 @@
+import SelectOption from "@/components/options";
+import StoreContent from "@/components/store-content";
 import Image from "next/image";
 
 interface StoreDetailProps {
@@ -8,67 +10,81 @@ export default async function StoreDetail({ params }: StoreDetailProps) {
   const id = (await params).id;
 
   return (
-    <div className="min-h-screen p-5">
-      <div className="grid sm:grid-cols-2 gap-3">
+    <div className="min-h-screen">
+      <div className="grid sm:grid-cols-2 gap-3 p-5">
         <Image
           src="/shop-main1.jpg"
           alt="shop"
           width={200}
-          height={200}
+          height={300}
           className="w-full rounded-xl"
+          priority
         />
-        <div className="flex flex-col gap-3">
-          <h1 className="font-bold text-xl">Denim Jacket</h1>
-          <p>121,000원</p>
-          <div>
-            <label htmlFor="size">사이즈</label>
-            <select id="size" name="size" className="w-full">
-              <option selected disabled>
-                [필수] 사이즈를 선택해주세요
-              </option>
-              <option value="option1">M</option>
-              <option value="option2">L</option>
-              <option value="option3">XL</option>
-            </select>
+        <div className="flex flex-col gap-5">
+          {/* name - price */}
+          <div className="flex flex-col gap-2">
+            <h1 className="font-bold text-xl">Denim Jacket</h1>
+            <p>121,000원</p>
           </div>
-          <div>
-            <label htmlFor="colors">색상</label>
-            <select id="colors" name="colors" className="w-full">
-              <option selected disabled>
-                [필수] 색상을 선택해주세요
-              </option>
-              <option value="option1">black</option>
-              <option value="option1">white</option>
-            </select>
+          {/* options */}
+          <div className="flex flex-col gap-2">
+            <SelectOption
+              id="size"
+              name="size"
+              labelText="사이즈"
+              options={["M", "L", "XL"]}
+              required
+              requiredText="사이즈를 선택해주세요."
+            />
+            <SelectOption
+              id="color"
+              name="color"
+              labelText="색상"
+              options={["black", "white"]}
+              required
+              requiredText="색상을 선택해주세요."
+            />
           </div>
-          <button className="mt-10 w-full h-10 flex justify-center items-center bg-black text-white uppercase text-center font-semibold text-sm">
-            add to cart
-          </button>
-          <button className="w-full h-10 flex justify-center items-center border uppercase text-center font-semibold text-sm">
-            buy now
-          </button>
-          <div className="border-b-2" />
-          <div className="flex items-center gap-2 h-10 *:flex *:justify-center *:items-center">
+          {/* discount card */}
+          <div className="w-full border border-neutral-200 p-2 px-3 flex justify-between items-center mt-5">
+            <div>
+              <p className="text-sm">쿠폰 사용시</p>
+              <p className="font-semibold text-lg">108,900원</p>
+            </div>
+            <button className="bg-black text-white rounded-md px-2 py-1 font-medium hover:bg-neutral-700 transition-colors text-sm">
+              쿠폰 받기
+            </button>
+          </div>
+          {/* button */}
+          <div className="flex flex-col gap-2 mt-5">
+            <button
+              className="w-full h-10 flex justify-center items-center bg-black text-white 
+              uppercase text-center font-semibold text-sm
+            hover:bg-neutral-700 transition-colors"
+            >
+              buy now
+            </button>
+            <button
+              className="w-full h-10 flex justify-center items-center border 
+            uppercase text-center font-semibold text-sm
+            hover:bg-neutral-200 transition-colors"
+            >
+              add to cart
+            </button>
+          </div>
+          {/* naver pay */}
+          {/* <div className="border-b-1" /> */}
+          {/* <div className="flex items-center gap-2 h-10 *:flex *:justify-center *:items-center">
             <button className="w-full h-full bg-green-400 text-sm font-semibold p-2">
               pay 구매하기
             </button>
             <button className="h-full size-10 p-2 border border-neutral-300">
               찜
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
-      <div>
-        <p>American retro stand-up collar denim jacket</p>
-        <div>
-          <p className="font-semibold text-neutral-500">Fabric</p>
-          <p>Cotton 83.5%, polyester 13%, viscose 3.5%</p>
-        </div>
-        <div>
-          <p className="font-semibold text-neutral-500">Model size</p>
-          <p>185/74 착용사이즈 XL</p>
-        </div>
-      </div>
+      <StoreContent />
     </div>
   );
 }

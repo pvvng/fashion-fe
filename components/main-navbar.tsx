@@ -40,7 +40,7 @@ interface MobileContentProps {
 
 function MobileContent({ isMenuShown, toggleMenu }: MobileContentProps) {
   return (
-    <div className="lg:hidden block bg-neutral-100/80 dark:bg-neutral-800/80 p-2 px-4 relative">
+    <div className="lg:hidden block bg-neutral-100/80 dark:bg-neutral-800/80 p-2 px-4 relative h-12">
       <div className="grid grid-cols-3 items-center">
         <p
           className="cursor-pointer hover:text-neutral-500 transition-colors *:size-7"
