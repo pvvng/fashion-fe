@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -8,7 +9,7 @@ const listMap: { [key: number]: React.JSX.Element } = {
   0: <Detail />,
   1: <Size />,
   2: <Review />,
-  3: <></>,
+  3: <QnA />,
 };
 
 export default function StoreContent() {
@@ -24,7 +25,9 @@ export default function StoreContent() {
         {contentNavItems.map((item, i) => (
           <p
             key={item}
-            className={`${nowList === i ? "bg-black" : "text-black"}`}
+            className={`${
+              nowList === i ? "bg-black dark:bg-neutral-600" : "text-black"
+            }`}
             onClick={() => setList(i)}
           >
             {item}
@@ -40,7 +43,7 @@ export default function StoreContent() {
 function Detail() {
   return (
     <div className="text-center flex flex-col gap-3">
-      <p className="text-xl font-bold my-20">
+      <p className="text-2xl font-bold my-20">
         American retro stand-up collar denim jacket
       </p>
       <div>
@@ -137,7 +140,7 @@ function Size() {
           </thead>
           <tbody>
             {sizeMap.map(({ size, chest, length, sleeve }, index) => (
-              <tr key={size} className="border border-gray-300 bg-white">
+              <tr key={size} className="border border-gray-300">
                 <td className="px-4 py-2 border border-gray-300">{size}</td>
                 <td className="px-4 py-2 border border-gray-300">/</td>
                 <td className="px-4 py-2 border border-gray-300">{chest}</td>
@@ -188,17 +191,21 @@ function ReviewCard() {
   };
 
   return (
-    <div className="flex flex-col gap-3 border-b-1 last:border-none border-neutral-200 p-3">
+    <div className="flex flex-col gap-3 border-b-1 last:border-none border-neutral-200 py-3">
       <div className="flex gap-2 items-center">
         <div className="size-6 rounded-full bg-neutral-200" />
         <div>
           <div className="flex gap-1 items-center">
             <p className="font-semibold">으르릉캉캉월월</p>
-            <p className="text-sm text-neutral-600">25.03.29</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              25.03.29
+            </p>
           </div>
         </div>
       </div>
-      <p className="text-sm text-neutral-600">170cm · 65kg · 260cm | M 구매</p>
+      <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        170cm · 65kg · 260cm | M 구매
+      </p>
       <div
         className={`${
           imageClick ? "aspect-square" : "size-28"
@@ -208,6 +215,55 @@ function ReviewCard() {
         <Image src="/test-img1.jpg" alt="text" fill className="object-cover" />
       </div>
       <p className="text-sm">개이뻐요 ㄷㄷ 나만샀으면 좋겠음 님들 사지마셈</p>
+    </div>
+  );
+}
+
+function QnA() {
+  return (
+    <div>
+      {[...Array(2)].map((_, i) => (
+        <QnACard key={i} />
+      ))}
+    </div>
+  );
+}
+
+function QnACard() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen((pre) => !pre);
+  };
+
+  return (
+    <div
+      className="py-3 border-b border-neutral-200 last:border-none flex flex-col gap-3"
+      onClick={toggleOpen}
+    >
+      <div className="flex justify-between items-center">
+        <div>
+          <p className="font-semibold">재입고 문의</p>
+          <p className="text-sm text-neutral-500">답변완료 · 2025.03.16</p>
+        </div>
+        <div className="*:size-4">
+          {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        </div>
+      </div>
+      {isOpen && (
+        <div className="bg-neutral-100 p-3 flex flex-col gap-2">
+          <p className="text-neutral-500">Denim Jacket</p>
+          <p className="text-sm">재입고 언제 되나요</p>
+          <div className="border-b border-neutral-400 my-5" />
+          <div className="*:text-sm">
+            <p>안녕하세요 고객님.</p>
+            <p>문의 주신 제품은 현재 재생산 예정이 없는 제품입니다.</p>
+            <p>도움 드리지 못하는 점 양해 부탁드립니다.</p>
+            <p>그 외 추가적인 문의 사항이 있으시면 재문의 부탁드립니다.</p>
+            <p>감사합니다 :)</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

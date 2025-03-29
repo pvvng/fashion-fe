@@ -51,7 +51,10 @@ export default async function StoreDetail({ params }: StoreDetailProps) {
               <p className="text-sm">쿠폰 사용시</p>
               <p className="font-semibold text-lg">108,900원</p>
             </div>
-            <button className="bg-black text-white rounded-md px-2 py-1 font-medium hover:bg-neutral-700 transition-colors text-sm">
+            <button
+              className="bg-black text-white dark:bg-neutral-100 dark:text-black dark:hover:bg-neutral-300
+              rounded-md px-2 py-1 font-medium hover:bg-neutral-700 transition-colors text-sm"
+            >
               쿠폰 받기
             </button>
           </div>
@@ -59,6 +62,7 @@ export default async function StoreDetail({ params }: StoreDetailProps) {
           <div className="flex flex-col gap-2 mt-5">
             <button
               className="w-full h-10 flex justify-center items-center bg-black text-white 
+              dark:bg-neutral-100 dark:text-black dark:hover:bg-neutral-300
               uppercase text-center font-semibold text-sm
             hover:bg-neutral-700 transition-colors"
             >
