@@ -3,9 +3,9 @@
 import Link from "next/link";
 
 const serviceLinks = [
+  { name: "stores", link: "/stores" },
   { name: "community", link: "/community" },
   { name: "brands", link: "/brands" },
-  { name: "stores", link: "/stores" },
   { name: "rental", link: "/rental" },
 ];
 
@@ -13,6 +13,7 @@ const profileLinks = [
   { name: "login", link: "/login" },
   { name: "join-us", link: "/create-account" },
   { name: "my-page", link: "/my-page" },
+  { name: "cart", link: "/cart" },
 ];
 
 const aboutUsLinks = [
